@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get started · Advolo</title>
+<meta name="description" content="Start with Advolo: share your brand details, pay the one-time setup, give us partner access on Meta and send your creatives.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet">
+<style>
+
+:root{
+--ink:#101114;--ink2:#17181C;--ink3:#1E1F24;--line:#2A2B30;
+--bone:#F3EFE6;--bone2:#E9E2D4;--card:#FBF8F2;--lineL:#DCD3C2;
+--muted:#A9A69F;--mutedD:#5C5952;
+--accent:#C6FF00;--accentD:#4A6100;--good:#C6FF00;
+--maxw:1200px;--r:16px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--ink);color:var(--bone);font:400 18px/1.6 'Space Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.sec{padding:136px 0}
+@media (max-width:720px){.sec{padding:88px 0}}
+.light{background:var(--bone);color:var(--ink)}
+.eyebrow{font:500 13px/1.3 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 22px}
+.light .eyebrow{color:var(--accentD)}
+.display{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.012em;line-height:1.04;margin:0}
+.h1{font-size:clamp(56px,9vw,132px)}
+.h2{font-size:clamp(38px,5vw,68px);max-width:18ch}
+.h3{font:700 clamp(22px,2.2vw,28px)/1.25 'Space Grotesk',sans-serif;margin:0}
+.h4{font:600 20px/1.35 'Space Grotesk',sans-serif;margin:0}
+.lede{font-size:clamp(18px,1.6vw,21px);line-height:1.65;color:var(--muted);max-width:640px;margin:28px 0 0}
+.light .lede{color:var(--mutedD)}
+.hl{color:var(--accent)}
+.light .hl{color:var(--accentD)}
+.sec-head{margin-bottom:72px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 28px;border-radius:999px;font:700 17px/1 'Space Grotesk',sans-serif;text-decoration:none;cursor:pointer;background:var(--accent);color:var(--ink);border:2px solid var(--accent);transition:transform .15s,filter .15s}
+.btn:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.btn:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.btn-ghost{background:transparent;color:inherit;border-color:rgba(243,239,230,.35)}
+.light .btn-ghost{border-color:rgba(16,17,20,.3)}
+.btn-ghost:hover{border-color:currentColor}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:44px}
+.grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.card{background:var(--ink2);border:1px solid var(--line);border-radius:var(--r);padding:32px}
+.light .card{background:var(--card);border-color:var(--lineL)}
+.card p{margin:12px 0 0;color:var(--muted);font-size:17px;line-height:1.6}
+.light .card p{color:var(--mutedD)}
+.tag{display:inline-block;font:500 12px/1 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+.light .tag{color:var(--accentD)}
+.note{font-size:14px;color:var(--muted);margin-top:24px}
+.light .note{color:var(--mutedD)}
+.logo{font:400 28px/1 'Anton',sans-serif;letter-spacing:.04em;text-decoration:none}
+.logo span{color:var(--accent)}
+
+/* header */
+.nav{border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:18px;padding-bottom:18px}
+.nav ul{display:flex;flex-wrap:wrap;align-items:center;gap:8px 28px;list-style:none;margin:0;padding:0;font-size:15px}
+.nav ul a{text-decoration:none;color:var(--muted)}
+.nav ul a:hover{color:var(--bone)}
+.nav .btn{min-height:44px;padding:0 20px;font-size:15px}
+.nav ul a.btn{color:var(--ink)}
+
+/* hero */
+.hero{padding:112px 0 104px}
+.trust{display:flex;flex-wrap:wrap;gap:12px 32px;margin-top:72px;padding-top:28px;border-top:1px solid var(--line);font-size:15px;color:var(--muted)}
+.trust b{color:var(--bone);font-weight:600}
+
+/* proof */
+.stat{font:400 clamp(44px,4.6vw,60px)/1 'Anton',sans-serif;letter-spacing:.01em;margin:6px 0 4px}
+.up{display:inline-block;font:600 15px/1 'Space Grotesk',sans-serif;color:var(--ink);background:var(--good);border-radius:999px;padding:6px 10px;margin-top:10px}
+.totals{display:flex;flex-wrap:wrap;gap:16px 56px;margin-top:48px;padding-top:32px;border-top:1px solid var(--line)}
+.totals div{font-size:16px;color:var(--muted)}
+.totals b{display:block;font:400 clamp(36px,3.6vw,48px)/1 'Anton',sans-serif;color:var(--bone);margin-bottom:8px;letter-spacing:.01em}
+
+.proofs{display:flex;flex-direction:column;gap:24px}
+.proof{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.2fr);gap:24px;align-items:center}
+@media (max-width:900px){.proof{grid-template-columns:1fr}}
+.proof figure{margin:0}
+.proof img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid var(--lineL);box-shadow:0 12px 32px -18px rgba(16,17,20,.35);background:#fff}
+.proof figcaption{font:500 12px/1.4 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--mutedD);margin-top:12px}
+.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:32px 64px;align-items:start;border-top:1px solid var(--line);padding-top:72px}
+@media (max-width:860px){.about{grid-template-columns:1fr}}
+.qz-cost{margin-top:32px;background:var(--ink2);border:1px solid rgba(198,255,0,.45);border-radius:var(--r);padding:26px 28px;max-width:760px}
+.qz-cost .qz-rate{margin:0;padding:0;border:0;background:none;display:flex}
+.qz-ex{margin:18px 0 0;padding:16px 18px;background:var(--ink3);border-radius:12px;font-size:17px;line-height:1.55;color:var(--bone)}
+.qz-ex b{color:var(--accent);font-weight:700}
+.qz-facts{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:16px;color:var(--muted)}
+.qz-facts b{color:var(--bone);font-weight:600}
+.qz-after{margin-top:40px}
+.qz-after h3{font:500 13px/1 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 16px}
+.qz-after ol{list-style:none;margin:0;padding:0;display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));counter-reset:a}
+.qz-after li{counter-increment:a;border-top:2px solid var(--accent);padding-top:14px;font-size:16px;color:var(--muted);line-height:1.5}
+.qz-after li b{display:block;color:var(--bone);font-weight:600;font-size:17px;margin-bottom:4px}
+/* steps */
+.flow{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));counter-reset:s}
+.flow .card{position:relative}
+.flow .n{font:400 44px/1 'Anton',sans-serif;color:var(--accentD);margin-bottom:18px;display:block}
+
+/* dashboard mock */
+.dash{background:var(--ink2);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.dash-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center;padding:18px 24px;border-bottom:1px solid var(--line);font-size:14px;color:var(--muted)}
+.dash-top b{color:var(--bone)}
+.sample{font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;background:var(--ink3);border:1px solid var(--line);color:var(--accent);padding:6px 10px;border-radius:999px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));border-bottom:1px solid var(--line)}
+.kpi{padding:24px;border-right:1px solid var(--line)}
+.kpi small{display:block;font:500 12px/1.3 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.kpi b{display:block;font:600 30px/1.1 'Space Grotesk',sans-serif;margin-top:10px}
+.kpi span{font-size:14px;color:var(--muted)}
+.bar{height:6px;background:var(--ink3);border-radius:6px;margin-top:12px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:6px}
+.dash-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+@media (max-width:860px){.dash-body{grid-template-columns:1fr}}
+.dash-col{padding:24px}
+.dash-col+.dash-col{border-left:1px solid var(--line)}
+@media (max-width:860px){.dash-col+.dash-col{border-left:0;border-top:1px solid var(--line)}}
+.dash-col h4{font:500 12px/1 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 16px}
+.log{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;font-size:15px;line-height:1.5}
+.log li{display:grid;grid-template-columns:auto 1fr;gap:12px}
+.log time{font:500 12px/1.9 'JetBrains Mono',monospace;color:var(--muted)}
+.chat{display:flex;flex-direction:column;gap:12px;font-size:15px;line-height:1.55}
+.msg{max-width:88%;padding:12px 16px;border-radius:14px}
+.msg.me{align-self:flex-end;background:var(--ink3);border:1px solid var(--line)}
+.msg.ai{background:rgba(198,255,0,.1);border:1px solid rgba(198,255,0,.35)}
+.msg.ai b{display:block;font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+
+/* pricing */
+.ptable{width:100%;border-collapse:collapse;font-size:18px}
+.ptable th,.ptable td{text-align:left;padding:20px 0;border-bottom:1px solid var(--lineL)}
+.ptable th{font:500 12px/1 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--mutedD)}
+.ptable td:last-child,.ptable th:last-child{text-align:right}
+.ptable td b{font:400 32px/1 'Anton',sans-serif;letter-spacing:.01em}
+.price{font:400 clamp(52px,6vw,80px)/1 'Anton',sans-serif;margin:14px 0 6px;letter-spacing:.01em}
+.zero{background:var(--ink);color:var(--bone);border-radius:var(--r);padding:28px 32px;display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;margin-top:20px}
+.zero b{font:400 44px/1 'Anton',sans-serif;color:var(--accent)}
+.zero p{margin:0;flex:1 1 360px}
+.ex{background:var(--bone2);border-radius:var(--r);padding:24px 28px;margin-top:20px;font-size:17px}
+.ex b{font-weight:700}
+.disclose{border:1px solid var(--lineL);border-radius:var(--r);padding:24px 28px;margin-top:20px;font-size:16px;color:var(--mutedD)}
+.disclose strong{color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.chips span{border:1px solid var(--lineL);border-radius:999px;padding:8px 16px;font-size:15px;font-weight:500}
+
+/* fit */
+.fit{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.fit ul{list-style:none;margin:24px 0 0;padding:0;display:flex;flex-direction:column;gap:14px;font-size:18px}
+.fit li{display:flex;gap:14px}
+.fit li::before{flex:none;font-family:'JetBrains Mono',monospace;font-weight:700}
+.yes li::before{content:"✓";color:var(--accent)}
+.no li::before{content:"✕";color:var(--muted)}
+.yes{border-color:rgba(198,255,0,.5)!important}
+
+/* faq */
+.faq{border-top:1px solid var(--lineL)}
+.faq details{border-bottom:1px solid var(--lineL)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:24px;align-items:center;padding:28px 0;font:600 clamp(19px,1.8vw,22px)/1.35 'Space Grotesk',sans-serif}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:400 28px/1 'Space Grotesk',sans-serif;color:var(--accentD);flex:none;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin:0 0 28px;max-width:760px;color:var(--mutedD);font-size:18px}
+
+.apply{text-align:center}
+.apply .h2{margin:0 auto;max-width:14ch;font-size:clamp(48px,7vw,96px)}
+.apply .lede{margin-left:auto;margin-right:auto}
+.apply .btns{justify-content:center}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;padding-top:32px;padding-bottom:32px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 20px}
+footer a{text-decoration:none}
+footer a:hover{color:var(--bone)}
+
+/* quiz */
+.qz{max-width:var(--maxw);margin:0 auto;padding:40px 24px 64px}
+body.qm header,body.qm .qz~*{display:none!important}
+body.qm .qz{min-height:100vh;min-height:100svh;display:flex;flex-direction:column}
+.qz-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+.qz-skip{color:var(--muted);text-decoration:none;font-size:15px;min-height:44px;display:inline-flex;align-items:center}
+.qz-skip:hover{color:var(--bone)}
+.qz-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:36px 0 24px}
+.qz-intro{margin-bottom:44px}
+.qz-what{font-size:clamp(18px,1.7vw,22px);line-height:1.5;color:var(--muted);margin:0 0 40px;padding:18px 0;border:1px solid var(--line);border-left:0;border-right:0;max-width:820px}
+.qz-what strong{color:var(--bone);font-weight:600}
+.qz-intro .lede{margin-top:22px}
+.qz-bar{height:4px;background:var(--line);border-radius:4px;overflow:hidden;margin-bottom:40px}
+.qz-bar i{display:block;height:100%;width:0;background:var(--accent);border-radius:4px;transition:width .35s ease}
+.qz-count{font:500 13px/1 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 16px}
+.qz-q{font:600 clamp(28px,3.6vw,46px)/1.2 'Space Grotesk',sans-serif;margin:0;max-width:26ch;letter-spacing:-.01em}
+.qz-q:focus{outline:none}
+.qz-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:32px}
+.qz-opt{appearance:none;font:500 18px/1.4 'Space Grotesk',sans-serif;text-align:left;color:var(--bone);background:var(--ink2);border:1.5px solid var(--line);border-radius:14px;padding:20px 22px;min-height:72px;display:flex;align-items:center;gap:16px;cursor:pointer;transition:border-color .15s,background .15s}
+.qz-opt:hover{border-color:var(--muted)}
+.qz-opt:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.qz-opt .k{flex:none;width:30px;height:30px;border-radius:8px;border:1.5px solid var(--line);display:inline-flex;align-items:center;justify-content:center;font:500 13px 'JetBrains Mono',monospace;color:var(--muted)}
+.qz-opt[aria-pressed="true"]{background:rgba(198,255,0,.12);border-color:var(--accent)}
+.qz-opt[aria-pressed="true"] .k{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+.qz-step{animation:qzIn .3s ease}
+@keyframes qzIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.qz-step{animation:none}.qz-bar i{transition:none}}
+.qz-nav{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:28px}
+.qz-back{appearance:none;background:none;border:0;color:var(--muted);font:500 15px 'Space Grotesk',sans-serif;cursor:pointer;min-height:44px;padding:0 10px}
+.qz-back:hover{color:var(--bone)}
+.qz-back:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+#quiz [hidden]{display:none!important}
+.qz-res-h{font-size:clamp(44px,6.4vw,88px);margin-top:4px}
+.qz-res-h:focus{outline:none}
+.qz-rate{display:inline-flex;flex-wrap:wrap;gap:8px 24px;align-items:baseline;margin-top:32px;background:var(--ink2);border:1px solid rgba(198,255,0,.45);border-radius:var(--r);padding:22px 28px}
+.qz-rate b{font:400 48px/1 'Anton',sans-serif;color:var(--accent);letter-spacing:.01em}
+.qz-rate span{color:var(--muted);font-size:17px}
+.qz-first{margin-top:44px}
+.qz-first h3{font:500 13px/1 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 16px}
+.qz-steps{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));list-style:none;margin:0;padding:0;counter-reset:q}
+.qz-steps li{counter-increment:q;background:var(--ink2);border:1px solid var(--line);border-radius:var(--r);padding:24px;font-size:17px;line-height:1.55}
+.qz-steps li::before{content:"0" counter(q);display:block;font:500 12px/1 'JetBrains Mono',monospace;letter-spacing:.1em;color:var(--accent);margin-bottom:12px}
+
+.top{border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:18px;padding-bottom:18px;flex-wrap:wrap}
+.top a.back{color:var(--muted);text-decoration:none;font-size:15px}
+.top a.back:hover{color:var(--bone)}
+.start{padding:72px 0 120px}
+.progress{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:48px 0 56px;list-style:none;padding:0}
+.progress li{border-top:3px solid var(--line);padding-top:12px;font:500 12px/1.3 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.progress li.on{border-color:var(--accent);color:var(--bone)}
+.progress li.done{border-color:var(--accent);color:var(--muted)}
+@media (max-width:560px){.progress li span{display:none}}
+.step{display:none;max-width:760px}
+.step.on{display:block;animation:qzIn .3s ease}
+.step h2{font:600 clamp(28px,3.4vw,40px)/1.2 'Space Grotesk',sans-serif;margin:0;letter-spacing:-.01em}
+.step .lede{margin-top:14px}
+form.f{display:grid;gap:22px;margin-top:40px}
+.row2{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.fld label,.fld legend{display:block;font:600 16px/1.3 'Space Grotesk',sans-serif;margin-bottom:8px;color:var(--bone)}
+.fld small{display:block;color:var(--muted);font-size:14px;margin-top:6px}
+.fld input[type=text],.fld input[type=email],.fld input[type=tel],.fld input[type=url],.fld select,.fld textarea{width:100%;font:400 17px/1.4 'Space Grotesk',sans-serif;color:var(--bone);background:var(--ink2);border:1.5px solid var(--line);border-radius:12px;padding:14px 16px;min-height:52px}
+.fld textarea{min-height:96px;resize:vertical}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--accent)}
+.fld input:user-invalid,.fld select:user-invalid{border-color:#FF7A7A}
+fieldset.fld{border:0;margin:0;padding:0}
+.radios{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.radios label{display:flex;gap:12px;align-items:center;background:var(--ink2);border:1.5px solid var(--line);border-radius:12px;padding:14px 16px;font:500 16px/1.35 'Space Grotesk',sans-serif;margin:0;cursor:pointer;min-height:52px}
+.radios label:has(input:checked){border-color:var(--accent);background:rgba(198,255,0,.08)}
+.radios input,.check input{accent-color:#C6FF00;width:18px;height:18px;flex:none}
+.check{display:flex;gap:12px;align-items:flex-start;font-size:16px;color:var(--muted);line-height:1.5;cursor:pointer}
+.check a{color:var(--bone)}
+.req{color:var(--accent)}
+.err{display:none;color:#FF9A9A;font-size:15px}
+.err.on{display:block}
+.box{background:var(--ink2);border:1px solid var(--line);border-radius:var(--r);padding:28px;margin-top:32px}
+.box.hl{border-color:rgba(198,255,0,.45)}
+.amount{font:400 clamp(48px,6vw,72px)/1 'Anton',sans-serif;letter-spacing:.01em}
+.amount small{font:500 16px/1.4 'Space Grotesk',sans-serif;color:var(--muted);letter-spacing:0;display:block;margin-top:10px}
+.howto{list-style:none;margin:28px 0 0;padding:0;display:flex;flex-direction:column;gap:14px;counter-reset:h}
+.howto li{counter-increment:h;display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:start;font-size:17px;line-height:1.55;color:var(--muted)}
+.howto li::before{content:counter(h);width:32px;height:32px;border-radius:50%;background:var(--ink3);border:1px solid var(--line);color:var(--accent);display:flex;align-items:center;justify-content:center;font:600 15px 'Space Grotesk',sans-serif}
+.howto b{color:var(--bone);font-weight:600}
+.code{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:16px}
+.code code{font:500 20px/1 'JetBrains Mono',monospace;background:var(--ink3);border:1px solid var(--line);border-radius:10px;padding:14px 18px;color:var(--accent)}
+.code button{min-height:48px}
+.navrow{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:40px}
+.linkbtn{appearance:none;background:none;border:0;color:var(--muted);font:500 15px 'Space Grotesk',sans-serif;cursor:pointer;min-height:44px;padding:0 6px}
+.linkbtn:hover{color:var(--bone)}
+.sent{display:none;margin-top:20px;padding:16px 18px;border-radius:12px;background:rgba(198,255,0,.08);border:1px solid rgba(198,255,0,.4);color:var(--bone);font-size:16px}
+.sent.on{display:block}
+.next{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));list-style:none;padding:0;margin:32px 0 0}
+.next li{border-top:2px solid var(--accent);padding-top:14px;color:var(--muted);font-size:16px;line-height:1.5}
+.next li b{display:block;color:var(--bone);font-size:17px;margin-bottom:4px}
+.pay-ph{display:inline-flex;align-items:center;min-height:54px;padding:0 24px;border-radius:999px;border:1.5px dashed var(--line);color:var(--muted);font-size:15px}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+<a class="logo" href="./">ADVOLO<span>.</span></a>
+<a class="back" href="./">← Back to the website</a>
+</div></header>
+
+<main class="start"><div class="wrap">
+<p class="eyebrow">Get started · about 10 minutes</p>
+<h1 class="display" style="font-size:clamp(40px,5.4vw,72px);max-width:16ch">Let&#39;s get your ads running.</h1>
+<p class="lede">Four quick steps. Once they&#39;re done, our team audits your account and launches, usually within 48 hours.</p>
+
+<ol class="progress" aria-label="Progress">
+<li data-p="1" class="on">01 <span>Your brand</span></li>
+<li data-p="2">02 <span>Setup fee</span></li>
+<li data-p="3">03 <span>Meta access</span></li>
+<li data-p="4">04 <span>Creatives</span></li>
+</ol>
+
+<!-- STEP 1 -->
+<section class="step on" id="s1" aria-labelledby="h1t">
+<h2 id="h1t" tabindex="-1">Tell us about your brand</h2>
+<p class="lede">This goes straight to our team on WhatsApp. Nothing is stored on this website.</p>
+<form class="f" id="brandForm" novalidate>
+<div class="row2">
+<div class="fld"><label for="bname">Business name <span class="req">*</span></label><input type="text" id="bname" name="bname" required autocomplete="organization"></div>
+<div class="fld"><label for="site">Shopify store URL <span class="req">*</span></label><input type="text" id="site" name="site" required placeholder="yourbrand.com" inputmode="url"><small>We work only on Shopify stores.</small></div>
+</div>
+<div class="row2">
+<div class="fld"><label for="cname">Your name <span class="req">*</span></label><input type="text" id="cname" name="cname" required autocomplete="name"></div>
+<div class="fld"><label for="wa">WhatsApp number <span class="req">*</span></label><input type="tel" id="wa" name="wa" required autocomplete="tel" placeholder="+91 98765 43210" inputmode="tel"></div>
+</div>
+<div class="fld"><label for="email">Work email <span class="req">*</span></label><input type="email" id="email" name="email" required autocomplete="email"></div>
+<div class="row2">
+<div class="fld"><label for="budget">Monthly Meta ad budget <span class="req">*</span></label>
+<select id="budget" name="budget" required>
+<option value="">Choose one</option>
+<option>₹30,000 – ₹1,00,000 (8% of sales from ads)</option>
+<option>₹1,00,001 – ₹3,00,000 (7%)</option>
+<option>₹3,00,001 – ₹10,00,000 (5%)</option>
+<option>Above ₹10,00,000 (custom rate)</option>
+<option>Under ₹30,000</option>
+</select></div>
+<div class="fld"><label for="cat">Product category <span class="req">*</span></label><input type="text" id="cat" name="cat" required placeholder="e.g. jewellery, skincare, home décor"></div>
+</div>
+<div class="fld"><label for="cust">Who buys from you?</label><textarea id="cust" name="cust" placeholder="e.g. working women, 25–35, metro cities, gifting"></textarea></div>
+<fieldset class="fld"><legend>Optional strategy calls</legend>
+<div class="radios">
+<label><input type="radio" name="calls" value="None" checked> No calls</label>
+<label><input type="radio" name="calls" value="2 calls a month (₹6,999)"> 2 calls a month · ₹6,999</label>
+<label><input type="radio" name="calls" value="4 calls a month (₹12,999)"> 4 calls a month · ₹12,999</label>
+</div><small>45 minutes each, plus GST. You can change this later.</small></fieldset>
+<label class="check"><input type="checkbox" id="terms" required> <span>I accept the <a href="#">Terms &amp; Conditions [LINK]</a> and <a href="#">Privacy Policy [LINK]</a>. <span class="req">*</span></span></label>
+<label class="check"><input type="checkbox" id="consent" required> <span>Advolo can contact me on WhatsApp and email about my account. <span class="req">*</span></span></label>
+<p class="err" id="err1" role="alert">Please fill in the required fields and tick both boxes.</p>
+<div class="navrow"><button type="submit" class="btn">Send details on WhatsApp</button></div>
+<p class="sent" id="sent1">WhatsApp should have opened with your details. Just tap <b>Send</b> there, then continue below.</p>
+</form>
+<div class="navrow" id="cont1" hidden><button type="button" class="btn" data-go="2">I&#39;ve sent it · Continue</button></div>
+</section>
+
+<!-- STEP 2 -->
+<section class="step" id="s2" aria-labelledby="h2t">
+<h2 id="h2t" tabindex="-1">Pay the one-time setup</h2>
+<p class="lede">Covers your account audit, tracking fixes and first campaigns. Non-refundable once the audit starts.</p>
+<div class="box hl">
+<div class="amount">₹5,900<small>₹5,000 setup + ₹900 GST (18%)</small></div>
+<div style="margin-top:28px" id="payWrap"></div>
+<p class="note" style="margin-top:18px">Secure payment by Razorpay: UPI, cards, net banking.</p>
+</div>
+<div class="box"><h3 class="h4">Your monthly fee comes later</h3><p>On the 3rd of each month we send your invoice: your rate × the sales Meta reports from your ads, with an Ads Manager screenshot as proof. If your ads brought no sales, it&#39;s ₹0.</p></div>
+<div class="navrow"><button type="button" class="btn" data-go="3">I&#39;ve paid · Continue</button><button type="button" class="linkbtn" data-go="1">← Back</button></div>
+</section>
+
+<!-- STEP 3 -->
+<section class="step" id="s3" aria-labelledby="h3t">
+<h2 id="h3t" tabindex="-1">Give us partner access on Meta</h2>
+<p class="lede">You stay the owner. We get partner access to run your ads, and you can remove it anytime.</p>
+<div class="box hl">
+<p style="margin:0;color:var(--muted)">Advolo&#39;s Business ID</p>
+<div class="code"><code id="bmid">[ADVOLO BUSINESS ID]</code><button type="button" class="btn btn-ghost" id="copyId">Copy</button></div>
+</div>
+<ol class="howto">
+<li><span>Open <b>business.facebook.com</b> and go to <b>Settings</b> (Business settings).</span></li>
+<li><span>Under <b>Users</b>, open <b>Partners</b>, then <b>Add</b> → <b>Give a partner access to your assets</b>.</span></li>
+<li><span>Paste Advolo&#39;s Business ID from above.</span></li>
+<li><span>Give access to your <b>ad account</b> (full control, so we can manage campaigns), your <b>Facebook page</b> and your <b>Meta pixel / dataset</b>.</span></li>
+<li><span>Save, then message us on WhatsApp so we can confirm.</span></li>
+</ol>
+<p class="note">Meta sometimes renames these menus. If you get stuck, message us and we&#39;ll walk you through it.</p>
+<div class="navrow"><a class="btn btn-ghost" id="wa3" target="_blank" rel="noopener">Tell us it&#39;s done on WhatsApp</a><button type="button" class="btn" data-go="4">Continue</button><button type="button" class="linkbtn" data-go="2">← Back</button></div>
+</section>
+
+<!-- STEP 4 -->
+<section class="step" id="s4" aria-labelledby="h4t">
+<h2 id="h4t" tabindex="-1">Send us your creatives</h2>
+<p class="lede">Product photos and phone videos you already have are perfect. Not much yet? That&#39;s fine. We&#39;ll send scripts and shot lists after the audit.</p>
+<ol class="howto">
+<li><span>Put your photos and videos in a <b>Google Drive folder</b>. Vertical (9:16) phone videos work best.</span></li>
+<li><span>Set sharing to <b>Anyone with the link can view</b>.</span></li>
+<li><span>Paste the link below and send it to us.</span></li>
+</ol>
+<form class="f" id="driveForm" novalidate style="margin-top:28px">
+<div class="fld"><label for="drive">Google Drive folder link</label><input type="url" id="drive" name="drive" placeholder="https://drive.google.com/…" inputmode="url"><small>No Drive folder? Just send the files to us on WhatsApp instead.</small></div>
+<div class="navrow"><button type="submit" class="btn">Send on WhatsApp</button><button type="button" class="linkbtn" data-go="3">← Back</button></div>
+</form>
+<div class="box hl" style="margin-top:48px">
+<p class="eyebrow" style="margin-bottom:12px">You&#39;re all set</p>
+<h3 class="h3">Here&#39;s what happens next</h3>
+<ol class="next">
+<li><b>Audit</b>We check your account, pixel, store and past ads, and fix tracking.</li>
+<li><b>The honest call</b>If something isn&#39;t ready for ads, we tell you before you spend.</li>
+<li><b>Launch</b>Campaigns built around what already sells, usually within 48 hours.</li>
+<li><b>Every 3 hours</b>Your ads are checked, and every change is logged.</li>
+</ol>
+</div>
+</section>
+</div></main>
+
+<footer><div class="wrap">
+<span>© 2026 Advolo · a product of Proton Labs</span>
+<nav aria-label="Legal"><a href="#">Terms &amp; Conditions [LINK]</a><a href="#">Privacy Policy [LINK]</a><a href="https://wa.me/918595956554" target="_blank" rel="noopener">WhatsApp: +91 85959 56554</a></nav>
+</div></footer>
+
+<script>
+(function(){
+/* === Settings: fill these in === */
+var WA_NUMBER='918595956554';
+var RAZORPAY_BUTTON_ID='';   /* e.g. pl_XXXXXXXXXXXX from Razorpay → Payment Button */
+/* ================================= */
+var $=function(id){return document.getElementById(id);};
+var brand='';
+function wa(text){return 'https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(text);}
+function go(n){
+for(var i=1;i<=4;i++){$('s'+i).classList.toggle('on',i===n);}
+document.querySelectorAll('.progress li').forEach(function(li){var p=+li.dataset.p;li.className=p===n?'on':(p<n?'done':'');if(p===n)li.setAttribute('aria-current','step');else li.removeAttribute('aria-current');});
+var h=$('h'+n+'t');window.scrollTo({top:0});h.focus({preventScroll:true});
+try{sessionStorage.setItem('advolo_step',n);}catch(e){}
+}
+document.querySelectorAll('[data-go]').forEach(function(b){b.addEventListener('click',function(){go(+b.dataset.go);});});
+/* step 1 */
+$('brandForm').addEventListener('submit',function(e){
+e.preventDefault();var f=e.target;
+if(!f.checkValidity()){$('err1').classList.add('on');f.reportValidity();return;}
+$('err1').classList.remove('on');
+var v=function(id){return $(id).value.trim();};
+brand=v('bname');
+try{sessionStorage.setItem('advolo_brand',brand);}catch(e){}
+var calls=f.querySelector('input[name=calls]:checked').value;
+var msg=['Hi Advolo, I want to get started.','','Business: '+brand,'Store: '+v('site'),'Name: '+v('cname'),'WhatsApp: '+v('wa'),'Email: '+v('email'),'Ad budget: '+$('budget').value,'Category: '+v('cat'),'Customers: '+(v('cust')||'-'),'Calls: '+calls,'','I accept the Terms & Privacy Policy and agree to be contacted on WhatsApp and email.'].join('\n');
+window.open(wa(msg),'_blank','noopener');
+$('sent1').classList.add('on');$('cont1').hidden=false;
+});
+/* step 2: Razorpay payment button */
+var pw=$('payWrap');
+if(RAZORPAY_BUTTON_ID){
+var form=document.createElement('form');var sc=document.createElement('script');
+sc.src='https://checkout.razorpay.com/v1/payment-button.js';sc.async=true;sc.setAttribute('data-payment_button_id',RAZORPAY_BUTTON_ID);
+form.appendChild(sc);pw.appendChild(form);
+}else{
+pw.innerHTML='<span class="pay-ph">Online payment opens soon. We’ll send your payment link on WhatsApp.</span>';
+}
+/* step 3 */
+$('copyId').addEventListener('click',function(){var t=$('bmid').textContent;var b=this;
+(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy';},1800);}).catch(function(){b.textContent='Select and copy';});});
+function setWa3(){$('wa3').href=wa('Hi Advolo, I’ve added your Business ID as a partner on my ad account, page and pixel.'+(brand?' Brand: '+brand:''));}
+setWa3();
+/* step 4 */
+$('driveForm').addEventListener('submit',function(e){e.preventDefault();
+var d=$('drive').value.trim();
+window.open(wa('Hi Advolo, here are my creatives'+(brand?' for '+brand:'')+': '+(d||'(sending files here on WhatsApp)')),'_blank','noopener');});
+/* restore */
+try{brand=sessionStorage.getItem('advolo_brand')||'';setWa3();var st=+sessionStorage.getItem('advolo_step');if(st>1&&st<5)go(st);}catch(e){}
+})();
+</script>
+</body>
+</html>
