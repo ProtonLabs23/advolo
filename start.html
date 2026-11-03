@@ -374,10 +374,8 @@ fieldset.fld{border:0;margin:0;padding:0}
 </div>
 <label class="check"><input type="checkbox" id="consent" required> <span>Advolo can contact me on WhatsApp and email about my account. <span class="req">*</span></span></label>
 <p class="err" id="err1" role="alert">Please fill in the required fields, type your name to sign, and tick both boxes.</p>
-<div class="navrow"><button type="submit" class="btn">Sign &amp; send details on WhatsApp</button></div>
-<p class="sent" id="sent1">WhatsApp should have opened with your details. Just tap <b>Send</b> there, then continue below.</p>
+<div class="navrow"><button type="submit" class="btn" id="sub1">Sign &amp; continue to payment →</button></div>
 </form>
-<div class="navrow" id="cont1" hidden><button type="button" class="btn" data-go="2">I&#39;ve sent it · Continue</button></div>
 </section>
 
 <!-- STEP 2 -->
@@ -449,6 +447,8 @@ fieldset.fld{border:0;margin:0;padding:0}
 /* === Settings: fill these in === */
 var WA_NUMBER='918595956554';
 var RAZORPAY_BUTTON_ID='';   /* e.g. pl_XXXXXXXXXXXX from Razorpay → Payment Button */
+var PAYMENT_LINK='';        /* or a Razorpay payment link, e.g. https://rzp.io/rzp/XXXX */
+var FORM_EMAIL='support@ads4u.net'; /* signup details are emailed here */
 /* ================================= */
 var $=function(id){return document.getElementById(id);};
 var brand='',signed=null;var TERMS_VERSION='v1.0';
@@ -475,8 +475,12 @@ signed={name:v('sig'),at:ist,version:TERMS_VERSION};
 try{sessionStorage.setItem('advolo_signed',JSON.stringify(signed));}catch(e){}
 $('signedNote').textContent='\u2713 Agreement signed by '+signed.name+' on '+signed.at;
 var msg=['Hi Advolo, I want to get started.','','Business: '+brand,'Store: '+v('site'),'Name: '+v('cname'),'WhatsApp: '+v('wa'),'Email: '+v('email'),'Ad budget: '+$('budget').value,'Category: '+v('cat'),'Customers: '+(v('cust')||'-'),'Calls: '+calls,'','AGREEMENT SIGNED','Signed by: '+signed.name,'Terms: Advolo Terms & Conditions '+TERMS_VERSION+' (ads4u.net/terms.html)','Date & time: '+signed.at,'I have read and agree to the Terms & Conditions and Privacy Policy on behalf of '+brand+', and I am authorised to do so. I agree to be contacted on WhatsApp and email.'].join('\n');
-window.open(wa(msg),'_blank','noopener');
-$('sent1').classList.add('on');$('cont1').hidden=false;
+var data={_subject:'New Advolo signup: '+brand,_template:'table',_captcha:'false',Business:brand,Store:v('site'),Name:v('cname'),WhatsApp:v('wa'),Email:v('email'),'Ad budget':$('budget').value,Category:v('cat'),Customers:v('cust')||'-',Calls:calls,'Signed by':signed.name,Terms:'Advolo Terms & Conditions '+TERMS_VERSION,'Signed at':signed.at,'Full summary':msg};
+try{sessionStorage.setItem('advolo_msg',msg);}catch(e){}
+var btn=$('sub1');btn.disabled=true;btn.textContent='Saving…';
+var done=false;function next(){if(done)return;done=true;btn.disabled=false;btn.textContent='Sign & continue to payment →';go(2);}
+try{fetch('https://formsubmit.co/ajax/'+FORM_EMAIL,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)}).then(next,next);}catch(err){next();}
+setTimeout(next,4000);
 });
 /* step 2: Razorpay payment button */
 var pw=$('payWrap');
@@ -484,6 +488,8 @@ if(RAZORPAY_BUTTON_ID){
 var form=document.createElement('form');var sc=document.createElement('script');
 sc.src='https://checkout.razorpay.com/v1/payment-button.js';sc.async=true;sc.setAttribute('data-payment_button_id',RAZORPAY_BUTTON_ID);
 form.appendChild(sc);pw.appendChild(form);
+}else if(PAYMENT_LINK){
+pw.innerHTML='<a class="btn" href="'+PAYMENT_LINK+'" target="_blank" rel="noopener">Pay ₹5,900 securely</a>';
 }else{
 pw.innerHTML='<span class="pay-ph">Online payment opens soon. We’ll send your payment link on WhatsApp.</span>';
 }
