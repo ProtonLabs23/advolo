@@ -262,6 +262,18 @@ body.qm .qz{min-height:100vh;min-height:100svh;display:flex;flex-direction:colum
 .av-play .st{display:none}.av-btn[aria-pressed="true"] .av-play .st{display:block}.av-btn[aria-pressed="true"] .av-play .pl{display:none}
 .av-hint{display:block;font:500 12px/1 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--mutedD);margin:0 0 18px}
 .persona.speaking .av-hint{color:var(--accentD)}
+.orb-btn{width:104px;height:104px;border-radius:50%;margin-bottom:24px}
+.orb{width:104px;height:104px;display:block;border-radius:50%;transition:transform .3s ease}
+.orb-btn:hover .orb{transform:scale(1.04)}
+.persona.speaking .orb{transform:scale(1.08)}
+.orb-btn .av-play{right:-2px;bottom:-2px}
+.orb-btn:focus-visible{outline-offset:5px}
+.qz-wa{margin:40px 0 8px;padding:24px;border-radius:18px;border:1px solid rgba(198,255,0,.45);background:rgba(198,255,0,.06);display:flex;flex-wrap:wrap;gap:18px 28px;align-items:center;justify-content:space-between}
+.qz-wa-t{margin:0;flex:1 1 320px;color:var(--muted);font-size:17px;line-height:1.5}
+.qz-wa-t b{color:var(--bone);display:block;font-size:19px;margin-bottom:4px}
+.btn-wa{display:inline-flex;align-items:center;gap:10px}
+.wa-ic{width:22px;height:22px;flex:none}
+#qzCta[hidden]{display:none!important}
 </style>
 </head>
 <body>
@@ -327,9 +339,12 @@ el.addEventListener('click',done);el.addEventListener('animationend',function(e)
 <li><b>Pay ₹5,000 setup</b>and turn on autopay. Nothing else is charged yet.</li>
 <li><b>We go live</b>usually within 48 hours.</li>
 </ol></div>
+<div class="qz-wa">
+<p class="qz-wa-t"><b>Want a real person to look at this?</b> Send your answers to our team on WhatsApp. We&#39;re there Monday to Saturday, 10am to 7pm.</p>
+<a class="btn btn-wa" id="qzWa" href="https://wa.me/918595956554" target="_blank" rel="noopener"><svg class="wa-ic" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg><span id="qzWaL">Chat with us on WhatsApp</span></a>
+</div>
 <div class="btns">
-<a class="btn" id="qzCta" href="start.html">Get started</a>
-<a class="btn btn-ghost" id="qzWa" href="https://wa.me/918595956554?text=Hi%20Advolo%2C%20I%20took%20the%20quiz%20and%20I%27d%20like%20to%20talk%20before%20signing%20up." target="_blank" rel="noopener" hidden>Talk to us on WhatsApp first</a>
+<a class="btn btn-ghost" id="qzCta" href="start.html">Get started</a>
 <a class="btn btn-ghost" href="#how">See how it works</a>
 <button type="button" class="qz-back" id="qzRedo">↺ Retake</button>
 </div>
@@ -488,8 +503,8 @@ el.addEventListener('click',done);el.addEventListener('animationend',function(e)
 <p class="lede">Two Smart Intelligence consultants read your live numbers around the clock. A human team is on chat Monday to Saturday. Tap their icons to meet them.</p>
 </div>
 <div class="grid">
-<div class="card persona"><button type="button" class="av av-btn" data-who="vishwas" aria-pressed="false" aria-label="Hear Vishwas introduce himself"><svg class="av-ic" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="18" fill="#101114"/><rect x="14" y="36" width="8" height="14" rx="3" fill="#C6FF00" opacity=".45"/><rect x="28" y="28" width="8" height="22" rx="3" fill="#C6FF00" opacity=".7"/><rect x="42" y="18" width="8" height="32" rx="3" fill="#C6FF00"/><circle cx="46" cy="11" r="3.5" fill="#F3EFE6"/></svg><span class="av-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="pl" d="M8 5.5v13l11-6.5z"/><rect class="st" x="6.5" y="6.5" width="11" height="11" rx="2"/></svg></span><span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button><span class="tag">Smart Intelligence · Numbers · 24/7</span><h3 class="h3">Vishwas</h3><p>Reads your live numbers and explains, in plain words, what&#39;s working, what isn&#39;t, why sales moved, and what your bill is so far.</p></div>
-<div class="card persona"><button type="button" class="av av-btn" data-who="rachna" aria-pressed="false" aria-label="Hear Rachna introduce herself"><svg class="av-ic" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="18" fill="#C6FF00"/><rect x="20" y="11" width="24" height="42" rx="6" fill="none" stroke="#101114" stroke-width="3.5"/><path d="M29 26.5v11l9-5.5z" fill="#101114"/><path d="M51 12l1.6 3.4L56 17l-3.4 1.6L51 22l-1.6-3.4L46 17l3.4-1.6z" fill="#101114"/></svg><span class="av-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="pl" d="M8 5.5v13l11-6.5z"/><rect class="st" x="6.5" y="6.5" width="11" height="11" rx="2"/></svg></span><span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button><span class="tag">Smart Intelligence · Content · 24/7</span><h3 class="h3">Rachna</h3><p>Sees which ads sell and which people have seen too often, then suggests hooks, scripts, shot lists and captions you can film on your phone in under 30 minutes.</p></div>
+<div class="card persona"><button type="button" class="av av-btn orb-btn" data-who="vishwas" aria-pressed="false" aria-label="Hear Vishwas introduce himself"><canvas class="orb" data-orb="vishwas" width="208" height="208" aria-hidden="true"></canvas><span class="av-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="pl" d="M8 5.5v13l11-6.5z"/><rect class="st" x="6.5" y="6.5" width="11" height="11" rx="2"/></svg></span></button><span class="tag">Smart Intelligence · Numbers · 24/7</span><h3 class="h3">Vishwas</h3><p>Reads your live numbers and explains, in plain words, what&#39;s working, what isn&#39;t, why sales moved, and what your bill is so far.</p></div>
+<div class="card persona"><button type="button" class="av av-btn orb-btn" data-who="rachna" aria-pressed="false" aria-label="Hear Rachna introduce herself"><canvas class="orb" data-orb="rachna" width="208" height="208" aria-hidden="true"></canvas><span class="av-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="pl" d="M8 5.5v13l11-6.5z"/><rect class="st" x="6.5" y="6.5" width="11" height="11" rx="2"/></svg></span></button><span class="tag">Smart Intelligence · Content · 24/7</span><h3 class="h3">Rachna</h3><p>Sees which ads sell and which people have seen too often, then suggests hooks, scripts, shot lists and captions you can film on your phone in under 30 minutes.</p></div>
 <div class="card persona"><div class="av"><svg class="av-ic" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="18" fill="#F3EFE6" stroke="#DCD3C2"/><circle cx="24" cy="25" r="7" fill="#101114"/><path d="M12 48c1.5-8 6.5-12 12-12s10.5 4 12 12z" fill="#101114"/><circle cx="42" cy="27" r="6" fill="#4A6100"/><path d="M33 48c1.4-6.6 5-10 9-10s8 3.4 9.5 10z" fill="#4A6100"/></svg></div><span class="tag">Mon–Sat · 10am–7pm IST</span><h3 class="h3">Your human team</h3><p>A consultant on chat, plus a WhatsApp point of contact for every brand. Optional strategy video calls as an add-on.</p></div>
 </div>
 <p class="note">Vishwas and Rachna answer only from your real data. They never invent numbers or promise results, and anything serious goes straight to the human team.</p>
@@ -694,31 +709,31 @@ function steps(list,head){$('qzFirstH').textContent=head||'What we’d do first'
 function show(){
 exitQM();$('qzQuestion').hidden=true;$('qzIntro').hidden=true;$('qzResult').hidden=false;
 var H=$('qzResH'),Ld=$('qzLede'),C=$('qzCta'),T=$('qzResTag');
-$('qzRate').hidden=true;$('qzFirst').hidden=true;$('qzWa').hidden=true;$('qzAfter').hidden=true;
+$('qzRate').hidden=true;$('qzFirst').hidden=true;$('qzAfter').hidden=true;C.hidden=false;var waL='Chat with us on WhatsApp',waAsk='I\u2019d like to talk to your team.';
 if(A.who==='agency'){
 T.textContent='For agencies';H.innerHTML='Sell this under <span class="hl">your own name.</span>';
 Ld.textContent='White-label Advolo for your clients: your logo, colours, domain, pricing and payments. The dashboard, Smart Intelligence consultants and auto-billing all run under your brand.';
 steps(['Book a demo with our team.','Set your branding, pricing tiers and fee cap.','Onboard clients who pay you directly.'],'How it works for you');
-C.textContent='Book an agency demo';C.href='#agencies';
+C.textContent='See the agency plan';C.href='#agencies';waL='Book an agency demo on WhatsApp';waAsk='I run an agency and I\u2019d like a white-label demo.';
 }else if(A.who==='launch'||A.where==='none'){
 T.textContent='An honest answer';H.innerHTML='Get it right <span class="hl">before you spend.</span>';
 Ld.textContent='Ads work best once you’re selling. Our free Business Analyser gives you a readiness score, a suggested ad budget, expected sales and your break-even point, so you launch with real numbers. No Shopify store yet? We can build one, starting at ₹10,000.';
-C.textContent='Try the free Business Analyser';C.href='#analyser';
+C.textContent='Try the free Business Analyser';C.href='#analyser';waL='Ask us on WhatsApp';waAsk='I\u2019m about to launch and I\u2019d like advice on getting started (and a Shopify store quote, if needed).';
 }else if(A.where==='web'){
 T.textContent='An honest answer';H.innerHTML='We work only <span class="hl">on Shopify.</span>';
 Ld.textContent='Advolo runs ads only for Shopify stores. If you’re happy to move, we can build your Shopify store, starting at ₹10,000.';
 steps(['We build your Shopify store, starting at ₹10,000.','The Meta pixel goes in from day one.','Then we run your ads, paid from sales.'],'Your next steps');
-C.textContent='Get my Shopify store built';C.href='https://wa.me/918595956554?text=Hi%20Advolo%2C%20I%27d%20like%20to%20get%20my%20Shopify%20store%20built.';
+C.hidden=true;waL='Enquire about a website on WhatsApp';waAsk='I\u2019d like to enquire about getting a Shopify website built for my brand.';
 }else if(A.where==='dm'||A.where==='market'){
 T.textContent='An honest answer';H.innerHTML='You need a store <span class="hl">before you need us.</span>';
 Ld.textContent='Meta ads need a store to send people to and a pixel to learn from. No store yet? We’ll build your Shopify store, starting at ₹10,000.';
 steps(['We build your Shopify store, starting at ₹10,000.','The Meta pixel goes in from day one.','Then we run your ads, paid from sales.'],'Your next steps');
-C.textContent='Get my Shopify store built';C.href='https://wa.me/918595956554?text=Hi%20Advolo%2C%20I%27d%20like%20to%20get%20my%20Shopify%20store%20built.';
+C.hidden=true;waL='Enquire about a website on WhatsApp';waAsk='I\u2019d like to enquire about getting a Shopify website built for my brand.';
 }else if(A.spend==='zero'||A.spend==='lt30'){
 T.textContent='Almost there';H.innerHTML='You’re close. <span class="hl">Let’s check the numbers.</span>';
 Ld.textContent='Meta needs about ₹30,000 a month in ads to find your buyers. The free Business Analyser shows the budget that makes sense for you, and what sales to expect.';
 if(FIRST[A.pain])steps(FIRST[A.pain],'When you’re ready, here’s what we’d do first');
-C.textContent='Try the free Business Analyser';C.href='#analyser';
+C.textContent='Try the free Business Analyser';C.href='#analyser';waL='Talk to us on WhatsApp';waAsk='I\u2019d like help working out the right ad budget.';
 }else{
 T.textContent='Your result';H.innerHTML='Good news. <span class="hl">You’re exactly who this is for.</span>';
 Ld.textContent='You sell through your own Shopify store and spend enough on ads for Meta to find your buyers. Here’s exactly what Advolo would cost you:';
@@ -726,10 +741,14 @@ var lo=A.spend==='30to1';
 $('qzRateNum').textContent=lo?'7%':'6% or less';
 $('qzRateTxt').textContent='of the sales your ads bring, as Meta reports them. Not your total store sales. Plus 18% GST.';
 $('qzEx').innerHTML=lo?'<b>Example:</b> your ads bring \u20b91,00,000 in sales this month \u2192 you pay <b>\u20b97,000</b> + GST. They bring nothing \u2192 you pay <b>\u20b90</b>.':'<b>Example:</b> you spend \u20b92,00,000 and your ads bring \u20b98,00,000 \u2192 6% \u00d7 \u20b98,00,000 = <b>\u20b948,000</b> + GST. Above \u20b93,00,000 spend the rate drops to 4%. The fee is capped at \u20b91,00,000 a month.';
-$('qzRate').hidden=false;$('qzWa').hidden=false;$('qzAfter').hidden=false;
+$('qzRate').hidden=false;$('qzAfter').hidden=false;
 if(FIRST[A.pain])steps(FIRST[A.pain]);
-C.textContent='Get started';C.href='start.html';
+C.textContent='Get started';C.href='start.html';waL='Talk to us on WhatsApp first';waAsk='I\u2019d like to talk before signing up.';
 }
+var lab=function(k){var q=Q[k];if(!q||!A[k])return null;for(var i=0;i<q.o.length;i++)if(q.o[i][0]===A[k])return q.o[i][1];return null;};
+var ans=[['About me','who'],['Where customers buy','where'],['Meta ad spend','spend'],['Biggest headache','pain'],['Monthly sales','sales']].map(function(r){var v=lab(r[1]);return v?'\u2022 '+r[0]+': '+v:null;}).filter(Boolean).join('\n');
+var msg='Hi Advolo! I just took the quiz on ads4u.net.\n'+ans+'\nMy result: '+H.textContent+'\n\n'+waAsk;
+$('qzWa').href='https://wa.me/918595956554?text='+encodeURIComponent(msg);$('qzWaL').textContent=waL;
 var ext=/^https?:/.test(C.getAttribute('href'));if(ext){C.target='_blank';C.rel='noopener';}else{C.removeAttribute('target');}
 $('quiz').scrollIntoView();H.focus({preventScroll:true});
 }
@@ -744,7 +763,7 @@ var LINES={
 vishwas:"Hi, I'm Vishwas! I look after your numbers. I keep an eye on your ads day and night, and whenever you ask, I'll tell you in simple words what's working, what isn't, and why your sales moved. No jargon, no made-up numbers. Just ask me anything, any time.",
 rachna:"Hi, I'm Rachna! I help with your ads' content. I see which ads your customers love and which ones they're tired of, and then I give you fresh ideas, hooks and simple scripts you can shoot on your phone in under thirty minutes. You film, and leave the rest to us."
 };
-var synth=window.speechSynthesis,cur=null,player=null;
+var synth=window.speechSynthesis,cur=null,player=null,actx=null,an=null,buf=null;
 function pick(who){
  if(!synth)return null;var vs=synth.getVoices();if(!vs.length)return null;
  var en=vs.filter(function(v){return /^en/i.test(v.lang);});var ind=en.filter(function(v){return /IN/i.test(v.lang);});
@@ -763,13 +782,69 @@ document.querySelectorAll('.av-btn').forEach(function(b){
   stop();
   function done(){if(cur===who)stop();}
   cur=who;card.classList.add('speaking');b.setAttribute('aria-pressed','true');
-  if(AUDIO[who]){player=new Audio(AUDIO[who]);player.onended=player.onerror=done;player.play().catch(done);return;}
+  if(AUDIO[who]){player=new Audio(AUDIO[who]);player.onended=player.onerror=done;
+   try{var AC=window.AudioContext||window.webkitAudioContext;if(AC){if(!actx){actx=new AC();an=actx.createAnalyser();an.fftSize=512;buf=new Uint8Array(an.fftSize);an.connect(actx.destination);}
+    actx.resume();actx.createMediaElementSource(player).connect(an);}}catch(e){an=null;}
+   player.play().catch(done);return;}
   if(!synth||!window.SpeechSynthesisUtterance){done();return;}
   var u=new SpeechSynthesisUtterance(LINES[who]);var v=pick(who);if(v){u.voice=v;u.lang=v.lang;}else{u.lang='en-IN';}
   u.pitch=who==='rachna'?1.1:0.9;u.onend=u.onerror=done;synth.speak(u);
  });
 });
 if(synth)synth.getVoices();
+
+/* Orbs: each consultant has their own colours; they swirl gently at rest and react to the voice when speaking. */
+var PAL={vishwas:{ring:'#7CFFC4',cols:['#C6FF00','#2EF2C8','#39B8FF','#E9FFF6','#1E7BFF']},
+ rachna:{ring:'#FF7AD9',cols:['#C6FF00','#FF4FD8','#FFB547','#FFF1FA','#9B6BFF']}};
+var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+var orbs=[].map.call(document.querySelectorAll('canvas.orb'),function(c){
+ var who=c.dataset.orb,seed=who==='rachna'?7.3:1.1;
+ return {c:c,x:c.getContext('2d'),who:who,p:PAL[who],seed:seed,lv:0,vis:true,t:seed*10};
+});
+function level(o){
+ if(cur!==o.who)return 0;
+ if(player&&an&&!player.paused){an.getByteTimeDomainData(buf);var s=0;for(var i=0;i<buf.length;i++){var v=(buf[i]-128)/128;s+=v*v;}return Math.min(1,Math.sqrt(s/buf.length)*4.2);}
+ return 0.45+0.35*Math.abs(Math.sin(performance.now()/170));
+}
+function blob(x,cx,cy,R,t,k,amp){
+ x.beginPath();
+ for(var i=0;i<=64;i++){var a=i/64*Math.PI*2;
+  var r=R*(0.62+amp*(0.16*Math.sin(3*a+t*1.3+k)+0.11*Math.sin(5*a-t*1.7+k*2.1)+0.07*Math.sin(2*a+t*0.9+k*3.3)));
+  var px=cx+Math.cos(a+t*0.25+k)*r,py=cy+Math.sin(a+t*0.25+k)*r*0.92;
+  i?x.lineTo(px,py):x.moveTo(px,py);}
+ x.closePath();
+}
+function draw(o,dt){
+ var x=o.x,W=o.c.width,cx=W/2,cy=W/2,R=W*0.44;
+ var target=level(o);o.lv+=(target-o.lv)*(target>o.lv?0.35:0.08);
+ var e=o.lv,speed=0.35+e*2.2;o.t+=dt*speed;var t=o.t;
+ x.clearRect(0,0,W,W);
+ var g=x.createRadialGradient(cx,cy*0.85,R*0.1,cx,cy,R);g.addColorStop(0,'#1B1D24');g.addColorStop(1,'#0A0B0E');
+ x.fillStyle=g;x.beginPath();x.arc(cx,cy,R,0,Math.PI*2);x.fill();
+ x.save();x.beginPath();x.arc(cx,cy,R-2,0,Math.PI*2);x.clip();
+ x.globalCompositeOperation='lighter';
+ var cols=o.p.cols,size=R*(0.56+e*0.26);
+ for(var k=0;k<cols.length;k++){
+  var ox=Math.cos(t*0.6+k*1.9+o.seed)*R*0.2*(1+e*0.6),oy=Math.sin(t*0.5+k*2.4+o.seed)*R*0.2*(1+e*0.6);
+  var gr=x.createRadialGradient(cx+ox,cy+oy,0,cx+ox,cy+oy,size);
+  gr.addColorStop(0,cols[k]);gr.addColorStop(0.45,cols[k]+'88');gr.addColorStop(1,cols[k]+'00');
+  x.globalAlpha=k===3?0.2+e*0.2:0.5+e*0.25;x.fillStyle=gr;x.filter='blur(6px)';
+  blob(x,cx+ox,cy+oy,size,t,k*1.7+o.seed,0.8+e*1.4);x.fill();x.filter='none';
+  x.globalAlpha=0.3+e*0.35;x.strokeStyle=cols[k];x.lineWidth=1.3;x.filter='blur(0.6px)';
+  blob(x,cx-ox*0.6,cy-oy*0.6,size*0.9,t*1.1,k*2.3+o.seed+1,1+e*1.6);x.stroke();
+ }
+ x.filter='none';x.restore();x.globalCompositeOperation='source-over';x.globalAlpha=1;
+ x.save();x.shadowColor=o.p.ring;x.shadowBlur=10+e*22;x.strokeStyle=o.p.ring;x.globalAlpha=0.55+e*0.45;x.lineWidth=3;
+ x.beginPath();x.arc(cx,cy,R-1.5,0,Math.PI*2);x.stroke();x.restore();
+ var hl=x.createRadialGradient(cx-R*0.35,cy-R*0.45,0,cx-R*0.35,cy-R*0.45,R*0.5);hl.addColorStop(0,'rgba(255,255,255,.16)');hl.addColorStop(1,'rgba(255,255,255,0)');
+ x.fillStyle=hl;x.beginPath();x.arc(cx,cy,R,0,Math.PI*2);x.fill();
+}
+var last=performance.now();
+function loop(now){var dt=Math.min(0.05,(now-last)/1000);last=now;
+ orbs.forEach(function(o){if(o.vis&&(!RM||cur===o.who))draw(o,RM?dt*0.3:dt);});requestAnimationFrame(loop);}
+orbs.forEach(function(o){draw(o,0);});
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(en){orbs.forEach(function(o){if(o.c===en.target)o.vis=en.isIntersecting;});});});orbs.forEach(function(o){io.observe(o.c);});}
+requestAnimationFrame(loop);
 })();
 </script>
 </body>
