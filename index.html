@@ -338,6 +338,7 @@ body.qm .qz{min-height:100vh;min-height:100svh;display:flex;flex-direction:colum
 .volo-fab:focus-visible{outline:none}.volo-fab:focus-visible .volo{outline:3px solid var(--accent);outline-offset:2px;border-radius:50%}
 body.qm .volo-fab,.volo-fab.off{opacity:0;transform:translateY(20px);pointer-events:none}
 @media (max-width:600px){.volo-fab{right:10px;bottom:10px}.volo-fab .volo{width:80px;height:80px}}
+.dash-shot{margin:0 -16px;position:relative}.dash-shot img{width:100%;height:auto;display:block}.dash-shot figcaption{position:absolute;top:28px;right:40px;font:500 11px/1 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);background:var(--accent);padding:6px 10px;border-radius:999px}@media (max-width:720px){.dash-shot{margin:0 -12px}.dash-shot figcaption{position:static;display:inline-block;margin:8px 12px 0}}
 </style>
 </head>
 <body>
@@ -532,30 +533,9 @@ el.addEventListener('click',done);el.addEventListener('animationend',function(e)
 <div class="sec-head">
 <p class="eyebrow">Your dashboard</p>
 <h2 class="display h2">Every rupee, <span class="hl">in plain sight.</span></h2>
-<p class="lede">Updated every 3 hours: sales from ads, spend vs budget, orders, your bill so far, best-selling ads, and a log of every change we made and why.</p>
+<p class="lede">Updated every 3 hours: sales from ads, how much comes back for every ₹1, spend vs budget, orders, cost per order, your bill so far, best-selling ads, and a log of every change we made and why.</p>
 </div>
-<div class="dash" role="img" aria-label="Sample dashboard with illustrative numbers">
-<div class="dash-top"><span><b>Your brand</b> · This month</span><span class="sample">Sample · illustrative numbers</span></div>
-<div class="kpis">
-<div class="kpi"><small>Sales from ads</small><b>₹8,00,000</b><span>₹4 in sales for every ₹1</span></div>
-<div class="kpi"><small>Ad spend vs budget</small><b>₹2,00,000</b><div class="bar"><i style="width:80%"></i></div></div>
-<div class="kpi"><small>Your rate</small><b>6%</b><span>₹1L – ₹3L spend tier</span></div>
-<div class="kpi"><small>Bill so far</small><b>₹48,000</b><span>+ 18% GST</span></div>
-</div>
-<div class="dash-body">
-<div class="dash-col"><h4>What we changed</h4>
-<ul class="log">
-<li><time>09:00</time><span>Paused an ad that spent ₹1,300 over 3 days with zero sales.</span></li>
-<li><time>12:00</time><span>Raised budget about 20% on an ad selling above target for several days.</span></li>
-<li><time>15:00</time><span>Flagged a creative for a refresh. People have seen it more than 3 times.</span></li>
-</ul></div>
-<div class="dash-col"><h4>Ask Vishwas</h4>
-<div class="chat">
-<div class="msg me">Why did sales go up this week?</div>
-<div class="msg ai"><b>Vishwas</b>Most of the lift came from your best-selling ad after we moved budget to it. You&#39;re getting ₹4 in sales for every ₹1 on ads.</div>
-</div></div>
-</div>
-</div>
+<figure class="dash-shot"><img src="dashboard.webp" width="2000" height="1551" loading="lazy" alt="Sample Advolo dashboard: ₹8,00,000 in sales from ads on ₹2,00,000 spend (₹4 for every ₹1), 640 orders, ₹313 cost per order, bill so far ₹48,000, a daily sales vs spend chart, a log of what we changed, best-selling ads, the bill, and a chat with Vishwas."><figcaption>Sample · illustrative numbers</figcaption></figure>
 <p class="note">Sample uses the example from our pricing: ₹2,00,000 spend and ₹8,00,000 in sales (₹4 back for every ₹1). Your dashboard shows your real numbers.</p>
 </div>
 </section>
