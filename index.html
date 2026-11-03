@@ -404,6 +404,8 @@ details.disclose summary{cursor:pointer}details.disclose[open] summary{margin-bo
  .apply .btns .btn{width:100%}
  .btns{gap:10px}
 }
+body:not(.qm) #quiz:not(.done){display:none}
+@media (max-width:720px){.nav ul li:not(:last-child){display:none}.nav .wrap{flex-wrap:nowrap}}
 </style>
 </head>
 <body>
@@ -430,6 +432,21 @@ function done(){if(el&&el.parentNode)el.parentNode.removeChild(el);}
 el.addEventListener('click',done);el.addEventListener('animationend',function(e){if(e.target===el)done();});setTimeout(done,2600);})();</script>
 
 
+<header class="nav">
+<div class="wrap">
+<a class="logo" href="#hero" aria-label="Advolo home"><svg class="logo-mark" aria-hidden="true"><use href="#advolo-mark"/></svg><span class="logo-word">advolo</span></a>
+<nav aria-label="Main">
+<ul>
+<li><a href="#how">How it works</a></li>
+<li><a href="#results">Results</a></li>
+<li><a href="#pricing">Pricing</a></li>
+<li><a href="#agencies">For agencies</a></li>
+<li><a href="#faq">FAQ</a></li>
+<li><a class="btn" href="start.html">Get started</a></li>
+</ul>
+</nav>
+</div>
+</header>
 <section id="quiz" class="qz" aria-label="Advolo fit quiz">
 <div class="qz-top">
 <span class="logo" role="img" aria-label="Advolo"><svg class="logo-mark" aria-hidden="true"><use href="#advolo-mark"/></svg><span class="logo-word">advolo</span></span>
@@ -483,26 +500,11 @@ el.addEventListener('click',done);el.addEventListener('animationend',function(e)
 </div>
 </section>
 
-<header class="nav">
-<div class="wrap">
-<a class="logo" href="#hero" aria-label="Advolo home"><svg class="logo-mark" aria-hidden="true"><use href="#advolo-mark"/></svg><span class="logo-word">advolo</span></a>
-<nav aria-label="Main">
-<ul>
-<li><a href="#how">How it works</a></li>
-<li><a href="#results">Results</a></li>
-<li><a href="#pricing">Pricing</a></li>
-<li><a href="#agencies">For agencies</a></li>
-<li><a href="#faq">FAQ</a></li>
-<li><a class="btn" href="start.html">Get started</a></li>
-</ul>
-</nav>
-</div>
-</header>
 
 <section id="hero" class="hero">
 <div class="wrap">
 <p class="eyebrow">Meta ads for small Indian D2C brands on Shopify</p>
-<h2 class="display h1">No sales? <span class="hl">No fee.</span></h2>
+<h2 class="display h1">No sales?<br><span class="hl">No fee.</span></h2>
 <p class="lede">We run your Meta ads. You pay a small % of the sales they bring.</p>
 <div class="btns">
 <a class="btn" href="start.html">Get started</a>
@@ -807,10 +809,11 @@ if(nx){hist.push(cur);cur=nx;render();$('qzQ').focus({preventScroll:true});}else
 back.addEventListener('click',function(){if(hist.length){cur=hist.pop();render();$('qzQ').focus({preventScroll:true});}});
 function exitQM(){document.body.classList.remove('qm');}
 $('qzSkip').addEventListener('click',function(e){e.preventDefault();exitQM();$('hero').scrollIntoView();});
-$('qzRedo').addEventListener('click',function(){A={};hist=[];cur='who';$('qzResult').hidden=true;$('qzQuestion').hidden=false;document.body.classList.add('qm');window.scrollTo(0,0);render();});
+$('qzRedo').addEventListener('click',function(){$('quiz').classList.remove('done');A={};hist=[];cur='who';$('qzResult').hidden=true;$('qzQuestion').hidden=false;document.body.classList.add('qm');window.scrollTo(0,0);render();});
 function steps(list,head){$('qzFirstH').textContent=head||'What we’d do first';$('qzSteps').innerHTML='';list.forEach(function(s){var li=document.createElement('li');li.textContent=s;$('qzSteps').appendChild(li);});$('qzFirst').hidden=false;}
 function volo(html,mood){var b=$('qzSay'),o=document.querySelector('#qzVolo .volo');if(b.innerHTML!==html){b.innerHTML=html;b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');}o.className='volo'+(mood?' '+mood:'');}
 function show(){
+$('quiz').classList.add('done');
 exitQM();$('qzQuestion').hidden=true;$('qzIntro').hidden=true;$('qzResult').hidden=false;
 var H=$('qzResH'),Ld=$('qzLede'),C=$('qzCta'),T=$('qzResTag');
 $('qzRate').hidden=true;$('qzFirst').hidden=true;$('qzAfter').hidden=true;C.hidden=false;var waL='Chat with us on WhatsApp',waAsk='I\u2019d like to talk to your team.';
