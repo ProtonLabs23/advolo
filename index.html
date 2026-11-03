@@ -242,6 +242,25 @@ body.qm .qz{min-height:100vh;min-height:100svh;display:flex;flex-direction:colum
 @keyframes introOut{to{opacity:0;visibility:hidden}}
 @media (max-width:560px){.intro-mark{width:84px}.intro-word{font-size:50px}.intro-inner{gap:14px}}
 @media (prefers-reduced-motion:reduce){#intro{display:none}}
+.persona{display:flex;flex-direction:column}
+.av{position:relative;width:72px;height:72px;margin-bottom:22px}
+.av-ic{width:72px;height:72px;display:block;transition:transform .25s}
+.persona.speaking .av-ic{animation:avBob 1.1s ease-in-out infinite}
+@keyframes avBob{50%{transform:translateY(-3px) scale(1.04)}}
+.wave{position:absolute;left:84px;top:22px;display:flex;gap:4px;align-items:center;height:28px;opacity:0;transition:opacity .2s}
+.wave i{display:block;width:5px;height:8px;border-radius:3px;background:var(--accentD)}
+.persona.speaking .wave{opacity:1}
+.persona.speaking .wave i{animation:wv .9s ease-in-out infinite}
+.persona.speaking .wave i:nth-child(2){animation-delay:.15s}.persona.speaking .wave i:nth-child(3){animation-delay:.3s}.persona.speaking .wave i:nth-child(4){animation-delay:.45s}
+@keyframes wv{50%{height:26px}}
+.voice{appearance:none;display:inline-flex;align-items:center;gap:10px;align-self:flex-start;margin-top:22px;min-height:48px;padding:0 20px 0 14px;border-radius:999px;border:1.5px solid var(--ink);background:var(--ink);color:var(--bone);font:600 16px/1 'Space Grotesk',sans-serif;cursor:pointer}
+.voice:hover{background:#26272c}
+.voice:focus-visible{outline:3px solid var(--accentD);outline-offset:3px}
+.voice svg{width:22px;height:22px;color:var(--accent)}
+.voice .st{display:none}.voice[aria-pressed="true"] .st{display:block}.voice[aria-pressed="true"] .pl{display:none}
+.say{margin:14px 0 0!important;font-size:15px!important;line-height:1.55;color:var(--mutedD);font-style:italic;min-height:0}
+.say:empty{display:none}
+@media (prefers-reduced-motion:reduce){.persona.speaking .av-ic,.persona.speaking .wave i{animation:none}}
 </style>
 </head>
 <body>
@@ -466,12 +485,14 @@ el.addEventListener('click',done);el.addEventListener('animationend',function(e)
 <div class="sec-head">
 <p class="eyebrow">Your consultants</p>
 <h2 class="display h2">Answers at 2am. <span class="hl">Humans at 10am.</span></h2>
-<p class="lede">Two AI consultants read your live numbers around the clock. A human team is on chat Monday to Saturday.</p>
+<p class="lede">Two Smart Intelligence consultants read your live numbers around the clock. A human team is on chat Monday to Saturday. Tap play to meet them.</p>
 </div>
 <div class="grid">
-<div class="card"><span class="tag">Analytics · 24/7</span><h3 class="h3">Vishwas</h3><p>Reads your live numbers and explains, in plain words, what&#39;s working, what isn&#39;t, why sales moved, and what your bill is so far.</p></div>
-<div class="card"><span class="tag">Ad content · 24/7</span><h3 class="h3">Rachna</h3><p>Sees which ads sell and which people have seen too often, then suggests hooks, scripts, shot lists and captions you can film on your phone in under 30 minutes.</p></div>
-<div class="card"><span class="tag">Mon–Sat · 10am–7pm IST</span><h3 class="h3">Your human team</h3><p>A consultant on chat, plus a WhatsApp point of contact for every brand. Optional strategy video calls as an add-on.</p></div>
+<div class="card persona"><div class="av"><svg class="av-ic" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="18" fill="#101114"/><rect x="14" y="36" width="8" height="14" rx="3" fill="#C6FF00" opacity=".45"/><rect x="28" y="28" width="8" height="22" rx="3" fill="#C6FF00" opacity=".7"/><rect x="42" y="18" width="8" height="32" rx="3" fill="#C6FF00"/><circle cx="46" cy="11" r="3.5" fill="#F3EFE6"/></svg><span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span></div><span class="tag">Smart Intelligence · Numbers · 24/7</span><h3 class="h3">Vishwas</h3><p>Reads your live numbers and explains, in plain words, what&#39;s working, what isn&#39;t, why sales moved, and what your bill is so far.</p>
+<button type="button" class="voice" data-who="vishwas" aria-pressed="false"><svg class="pl" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg><svg class="st" viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="6.5" width="11" height="11" rx="2" fill="currentColor"/></svg><span class="vl">Hear Vishwas</span></button><p class="say" aria-live="polite"></p></div>
+<div class="card persona"><div class="av"><svg class="av-ic" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="18" fill="#C6FF00"/><rect x="20" y="11" width="24" height="42" rx="6" fill="none" stroke="#101114" stroke-width="3.5"/><path d="M29 26.5v11l9-5.5z" fill="#101114"/><path d="M51 12l1.6 3.4L56 17l-3.4 1.6L51 22l-1.6-3.4L46 17l3.4-1.6z" fill="#101114"/></svg><span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span></div><span class="tag">Smart Intelligence · Content · 24/7</span><h3 class="h3">Rachna</h3><p>Sees which ads sell and which people have seen too often, then suggests hooks, scripts, shot lists and captions you can film on your phone in under 30 minutes.</p>
+<button type="button" class="voice" data-who="rachna" aria-pressed="false"><svg class="pl" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg><svg class="st" viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="6.5" width="11" height="11" rx="2" fill="currentColor"/></svg><span class="vl">Hear Rachna</span></button><p class="say" aria-live="polite"></p></div>
+<div class="card persona"><div class="av"><svg class="av-ic" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="18" fill="#F3EFE6" stroke="#DCD3C2"/><circle cx="24" cy="25" r="7" fill="#101114"/><path d="M12 48c1.5-8 6.5-12 12-12s10.5 4 12 12z" fill="#101114"/><circle cx="42" cy="27" r="6" fill="#4A6100"/><path d="M33 48c1.4-6.6 5-10 9-10s8 3.4 9.5 10z" fill="#4A6100"/></svg></div><span class="tag">Mon–Sat · 10am–7pm IST</span><h3 class="h3">Your human team</h3><p>A consultant on chat, plus a WhatsApp point of contact for every brand. Optional strategy video calls as an add-on.</p></div>
 </div>
 <p class="note">Vishwas and Rachna answer only from your real data. They never invent numbers or promise results, and anything serious goes straight to the human team.</p>
 </div>
@@ -565,7 +586,7 @@ el.addEventListener('click',done);el.addEventListener('animationend',function(e)
 <div class="sec-head">
 <p class="eyebrow">For agencies</p>
 <h2 class="display h2">Sell Advolo under <span class="hl">your own name.</span></h2>
-<p class="lede">White-label the whole thing: the dashboard, the AI consultants and auto-billing, all under your brand. &quot;Powered by Advolo&quot; can be hidden.</p>
+<p class="lede">White-label the whole thing: the dashboard, the Smart Intelligence consultants and auto-billing, all under your brand. &quot;Powered by Advolo&quot; can be hidden.</p>
 </div>
 <div class="grid">
 <div class="card"><h3 class="h4">Your brand</h3><p>Your logo, colours and domain.</p></div>
@@ -678,7 +699,7 @@ var H=$('qzResH'),Ld=$('qzLede'),C=$('qzCta'),T=$('qzResTag');
 $('qzRate').hidden=true;$('qzFirst').hidden=true;$('qzWa').hidden=true;$('qzAfter').hidden=true;
 if(A.who==='agency'){
 T.textContent='For agencies';H.innerHTML='Sell this under <span class="hl">your own name.</span>';
-Ld.textContent='White-label Advolo for your clients: your logo, colours, domain, pricing and payments. The dashboard, AI consultants and auto-billing all run under your brand.';
+Ld.textContent='White-label Advolo for your clients: your logo, colours, domain, pricing and payments. The dashboard, Smart Intelligence consultants and auto-billing all run under your brand.';
 steps(['Book a demo with our team.','Set your branding, pricing tiers and fee cap.','Onboard clients who pay you directly.'],'How it works for you');
 C.textContent='Book an agency demo';C.href='#agencies';
 }else if(A.who==='launch'||A.where==='none'){
@@ -715,6 +736,40 @@ var ext=/^https?:/.test(C.getAttribute('href'));if(ext){C.target='_blank';C.rel=
 $('quiz').scrollIntoView();H.focus({preventScroll:true});
 }
 render();
+})();
+</script>
+<script>
+(function(){
+var LINES={
+vishwas:"Hi, I'm Vishwas, your numbers consultant at Advolo. Every three hours I read your live ad data and tell you, in plain words, what's working, what isn't, why your sales moved, and what your bill is so far. No jargon, and I never make up numbers. Ask me anything, any time.",
+rachna:"Hi, I'm Rachna, your content consultant at Advolo. I watch which of your ads are selling and which ones people are getting tired of. Then I give you fresh hooks, short scripts and shot lists that you can film on your phone in under thirty minutes. You film, and we do the rest."
+};
+var synth=window.speechSynthesis,cur=null;
+function pick(who){
+ if(!synth)return null;var vs=synth.getVoices();if(!vs.length)return null;
+ var en=vs.filter(function(v){return /^en/i.test(v.lang);});var ind=en.filter(function(v){return /IN/i.test(v.lang);});
+ var fem=/female|woman|veena|heera|raveena|aditi|kajal|priya|neerja|swara|isha|samantha|zira|susan|karen|moira|tessa|serena|fiona|victoria/i;
+ var mal=/(^|[^e])male|\bman\b|rishi|ravi|hemant|prabhat|madhur|daniel|david|alex|fred|aaron|arthur|oliver|thomas|george/i;
+ var want=who==='rachna'?function(v){return fem.test(v.name);}:function(v){return mal.test(v.name)&&!fem.test(v.name);};
+ return ind.filter(want)[0]||en.filter(want)[0]||ind[0]||en[0]||null;
+}
+function reset(){document.querySelectorAll('.persona.speaking').forEach(function(c){c.classList.remove('speaking');});
+ document.querySelectorAll('.voice').forEach(function(b){b.setAttribute('aria-pressed','false');b.querySelector('.vl').textContent='Hear '+(b.dataset.who==='rachna'?'Rachna':'Vishwas');});cur=null;}
+document.querySelectorAll('.voice').forEach(function(b){
+ b.addEventListener('click',function(){
+  var who=b.dataset.who,card=b.closest('.persona'),say=card.querySelector('.say');
+  if(cur===who){if(synth)synth.cancel();reset();return;}
+  if(synth)synth.cancel();reset();
+  say.textContent='\u201C'+LINES[who]+'\u201D';
+  if(!synth||!window.SpeechSynthesisUtterance)return;
+  var u=new SpeechSynthesisUtterance(LINES[who]);var v=pick(who);if(v){u.voice=v;u.lang=v.lang;}else{u.lang='en-IN';}
+  u.rate=1;u.pitch=who==='rachna'?1.1:0.9;
+  u.onend=u.onerror=function(){if(cur===who)reset();};
+  cur=who;card.classList.add('speaking');b.setAttribute('aria-pressed','true');b.querySelector('.vl').textContent='Stop';
+  synth.speak(u);
+ });
+});
+if(synth&&synth.onvoiceschanged!==undefined){synth.onvoiceschanged=function(){};synth.getVoices();}
 })();
 </script>
 </body>
