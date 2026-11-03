@@ -248,6 +248,10 @@ body.qm .qz{min-height:100vh;min-height:100svh;display:flex;flex-direction:colum
 .logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--bone)}
 .logo .logo-mark{width:32px;height:30px;color:var(--accent);flex:none}
 .logo .logo-word{font:700 27px/1 'Space Grotesk',sans-serif;letter-spacing:-.045em;color:var(--bone)}
+.logo .logo-mark{transform-origin:50% 60%}
+.logo:hover .logo-mark,.logo:focus-visible .logo-mark{animation:logoPop .6s cubic-bezier(.3,1.6,.5,1)}
+@keyframes logoPop{0%{transform:none}35%{transform:rotate(-14deg) scale(1.12)}100%{transform:none}}
+@media (prefers-reduced-motion:reduce){.logo:hover .logo-mark{animation:none}}
 </style>
 </head>
 <body>
