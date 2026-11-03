@@ -622,7 +622,7 @@ el.addEventListener('click',done);el.addEventListener('animationend',function(e)
 </div>
 <div class="card" style="margin-top:20px;display:flex;flex-wrap:wrap;gap:20px 32px;align-items:center;justify-content:space-between">
 <div style="flex:1 1 420px"><span class="tag">Not ready yet?</span><h3 class="h3">Try the free Business Analyser.</h3><p>A readiness score, a suggested ad budget, expected sales, your break-even point and your top problems with fixes. All estimates, all free.</p></div>
-<a class="btn" href="#analyser" id="analyser">Analyse my brand [ANALYSER LINK]</a>
+<a class="btn" href="analyser.html" id="analyser">Analyse my brand</a>
 </div>
 </div>
 </section>
@@ -688,7 +688,7 @@ el.addEventListener('click',done);el.addEventListener('animationend',function(e)
 <div class="btns">
 <a class="btn" href="start.html">Get started</a>
 <a class="btn btn-ghost" href="https://wa.me/918595956554?text=Hi%20Advolo%2C%20I%27d%20like%20to%20know%20more%20before%20signing%20up." target="_blank" rel="noopener">Talk to us on WhatsApp first</a>
-<a class="btn btn-ghost" href="#analyser">Not ready? Free Business Analyser</a>
+<a class="btn btn-ghost" href="analyser.html">Not ready? Free Business Analyser</a>
 </div>
 <p class="note" style="margin-top:56px">Advolo is run by a performance marketing team for D2C brands in India and the UAE.</p>
 </div>
@@ -766,7 +766,7 @@ C.textContent='See the agency plan';C.href='#agencies';waL='Book an agency demo 
 }else if(A.who==='launch'||A.where==='none'){
 T.textContent='An honest answer';H.innerHTML='Get it right <span class="hl">before you spend.</span>';
 Ld.textContent='Ads work best once you’re selling. Our free Business Analyser gives you a readiness score, a suggested ad budget, expected sales and your break-even point, so you launch with real numbers. No Shopify store yet? We can build one, starting at ₹10,000.';
-C.textContent='Try the free Business Analyser';C.href='#analyser';waL='Ask us on WhatsApp';waAsk='I\u2019m about to launch and I\u2019d like advice on getting started (and a Shopify store quote, if needed).';
+C.textContent='Try the free Business Analyser';C.href='analyser.html?stage=pre';waL='Ask us on WhatsApp';waAsk='I\u2019m about to launch and I\u2019d like advice on getting started (and a Shopify store quote, if needed).';
 }else if(A.where==='web'){
 T.textContent='An honest answer';H.innerHTML='We work only <span class="hl">on Shopify.</span>';
 Ld.textContent='Advolo runs ads only for Shopify stores. If you’re happy to move, we can build your Shopify store, starting at ₹10,000.';
@@ -781,7 +781,7 @@ C.hidden=true;waL='Enquire about a website on WhatsApp';waAsk='I\u2019d like to 
 T.textContent='Almost there';H.innerHTML='You’re close. <span class="hl">Let’s check the numbers.</span>';
 Ld.textContent='Meta needs about ₹30,000 a month in ads to find your buyers. The free Business Analyser shows the budget that makes sense for you, and what sales to expect.';
 if(FIRST[A.pain])steps(FIRST[A.pain],'When you’re ready, here’s what we’d do first');
-C.textContent='Try the free Business Analyser';C.href='#analyser';waL='Talk to us on WhatsApp';waAsk='I\u2019d like help working out the right ad budget.';
+C.textContent='Try the free Business Analyser';C.href='analyser.html';waL='Talk to us on WhatsApp';waAsk='I\u2019d like help working out the right ad budget.';
 }else{
 T.textContent='Your result';H.innerHTML='Good news. <span class="hl">You’re exactly who this is for.</span>';
 Ld.textContent='You sell through your own Shopify store and spend enough on ads for Meta to find your buyers. Here’s exactly what Advolo would cost you:';
