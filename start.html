@@ -267,6 +267,10 @@ fieldset.fld{border:0;margin:0;padding:0}
 .next{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));list-style:none;padding:0;margin:32px 0 0}
 .next li{border-top:2px solid var(--accent);padding-top:14px;color:var(--muted);font-size:16px;line-height:1.5}
 .next li b{display:block;color:var(--bone);font-size:17px;margin-bottom:4px}
+.keys{margin:14px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:6px;color:var(--muted);font-size:15px;line-height:1.5}
+.sigfield{font-family:'Space Grotesk',sans-serif!important;font-style:italic;font-size:20px!important}
+.signed{display:inline-flex;gap:10px;align-items:center;margin:16px 0 0;padding:8px 14px;border-radius:999px;background:rgba(198,255,0,.1);border:1px solid rgba(198,255,0,.4);color:var(--bone);font-size:15px}
+.signed:empty{display:none}
 .pay-ph{display:inline-flex;align-items:center;min-height:54px;padding:0 24px;border-radius:999px;border:1.5px dashed var(--line);color:var(--muted);font-size:15px}
 </style>
 </head>
@@ -321,10 +325,22 @@ fieldset.fld{border:0;margin:0;padding:0}
 <label><input type="radio" name="calls" value="2 calls a month (₹6,999)"> 2 calls a month · ₹6,999</label>
 <label><input type="radio" name="calls" value="4 calls a month (₹12,999)"> 4 calls a month · ₹12,999</label>
 </div><small>45 minutes each, plus GST. You can change this later.</small></fieldset>
-<label class="check"><input type="checkbox" id="terms" required> <span>I accept the <a href="#">Terms &amp; Conditions [LINK]</a> and <a href="#">Privacy Policy [LINK]</a>. <span class="req">*</span></span></label>
+<div class="box hl sign" style="margin-top:8px">
+<h3 class="h4">Sign the agreement</h3>
+<p style="color:var(--muted);margin:10px 0 0">Please read the <a href="terms.html" target="_blank" rel="noopener" style="color:var(--bone)">Advolo Terms &amp; Conditions (v1.0)</a> before you sign. The key points:</p>
+<ul class="keys">
+<li>One-time setup of ₹5,000 + GST, non-refundable once the audit starts</li>
+<li>Monthly fee: a % of the sales Meta reports from your ads, capped at ₹1,00,000. ₹0 in a month with no sales.</li>
+<li>Meta&#39;s sales figure isn&#39;t reduced for cancellations, returns, RTO or unpaid COD</li>
+<li>You pay Meta for ad spend directly. Your account and data stay yours.</li>
+<li>No guaranteed results. Cancel anytime with 15 days&#39; notice.</li>
+</ul>
+<div class="fld" style="margin-top:22px"><label for="sig">Type your full name as your signature <span class="req">*</span></label><input type="text" id="sig" name="sig" required autocomplete="name" class="sigfield"></div>
+<label class="check" style="margin-top:16px"><input type="checkbox" id="terms" required> <span>I have read and agree to the Advolo Terms &amp; Conditions (v1.0) and Privacy Policy on behalf of the business above, and I&#39;m authorised to do so. <span class="req">*</span></span></label>
+</div>
 <label class="check"><input type="checkbox" id="consent" required> <span>Advolo can contact me on WhatsApp and email about my account. <span class="req">*</span></span></label>
-<p class="err" id="err1" role="alert">Please fill in the required fields and tick both boxes.</p>
-<div class="navrow"><button type="submit" class="btn">Send details on WhatsApp</button></div>
+<p class="err" id="err1" role="alert">Please fill in the required fields, type your name to sign, and tick both boxes.</p>
+<div class="navrow"><button type="submit" class="btn">Sign &amp; send details on WhatsApp</button></div>
 <p class="sent" id="sent1">WhatsApp should have opened with your details. Just tap <b>Send</b> there, then continue below.</p>
 </form>
 <div class="navrow" id="cont1" hidden><button type="button" class="btn" data-go="2">I&#39;ve sent it · Continue</button></div>
@@ -333,6 +349,7 @@ fieldset.fld{border:0;margin:0;padding:0}
 <!-- STEP 2 -->
 <section class="step" id="s2" aria-labelledby="h2t">
 <h2 id="h2t" tabindex="-1">Pay the one-time setup</h2>
+<p class="signed" id="signedNote"></p>
 <p class="lede">Covers your account audit, tracking fixes and first campaigns. Non-refundable once the audit starts.</p>
 <div class="box hl">
 <div class="amount">₹5,900<small>₹5,000 setup + ₹900 GST (18%)</small></div>
@@ -390,7 +407,7 @@ fieldset.fld{border:0;margin:0;padding:0}
 
 <footer><div class="wrap">
 <span>© 2026 Advolo · a product of Proton Labs</span>
-<nav aria-label="Legal"><a href="#">Terms &amp; Conditions [LINK]</a><a href="#">Privacy Policy [LINK]</a><a href="https://wa.me/918595956554" target="_blank" rel="noopener">WhatsApp: +91 85959 56554</a></nav>
+<nav aria-label="Legal"><a href="terms.html">Terms &amp; Conditions</a><a href="#">Privacy Policy [LINK]</a><a href="https://wa.me/918595956554" target="_blank" rel="noopener">WhatsApp: +91 85959 56554</a></nav>
 </div></footer>
 
 <script>
@@ -400,9 +417,10 @@ var WA_NUMBER='918595956554';
 var RAZORPAY_BUTTON_ID='';   /* e.g. pl_XXXXXXXXXXXX from Razorpay → Payment Button */
 /* ================================= */
 var $=function(id){return document.getElementById(id);};
-var brand='';
+var brand='',signed=null;var TERMS_VERSION='v1.0';
 function wa(text){return 'https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(text);}
 function go(n){
+if(n>=2&&!signed){n=1;$('err1').textContent='Please sign the agreement and send your details before paying.';$('err1').classList.add('on');}
 for(var i=1;i<=4;i++){$('s'+i).classList.toggle('on',i===n);}
 document.querySelectorAll('.progress li').forEach(function(li){var p=+li.dataset.p;li.className=p===n?'on':(p<n?'done':'');if(p===n)li.setAttribute('aria-current','step');else li.removeAttribute('aria-current');});
 var h=$('h'+n+'t');window.scrollTo({top:0});h.focus({preventScroll:true});
@@ -418,7 +436,11 @@ var v=function(id){return $(id).value.trim();};
 brand=v('bname');
 try{sessionStorage.setItem('advolo_brand',brand);}catch(e){}
 var calls=f.querySelector('input[name=calls]:checked').value;
-var msg=['Hi Advolo, I want to get started.','','Business: '+brand,'Store: '+v('site'),'Name: '+v('cname'),'WhatsApp: '+v('wa'),'Email: '+v('email'),'Ad budget: '+$('budget').value,'Category: '+v('cat'),'Customers: '+(v('cust')||'-'),'Calls: '+calls,'','I accept the Terms & Privacy Policy and agree to be contacted on WhatsApp and email.'].join('\n');
+var now=new Date();var ist=now.toLocaleString('en-IN',{timeZone:'Asia/Kolkata',dateStyle:'medium',timeStyle:'short'})+' IST';
+signed={name:v('sig'),at:ist,version:TERMS_VERSION};
+try{sessionStorage.setItem('advolo_signed',JSON.stringify(signed));}catch(e){}
+$('signedNote').textContent='\u2713 Agreement signed by '+signed.name+' on '+signed.at;
+var msg=['Hi Advolo, I want to get started.','','Business: '+brand,'Store: '+v('site'),'Name: '+v('cname'),'WhatsApp: '+v('wa'),'Email: '+v('email'),'Ad budget: '+$('budget').value,'Category: '+v('cat'),'Customers: '+(v('cust')||'-'),'Calls: '+calls,'','AGREEMENT SIGNED','Signed by: '+signed.name,'Terms: Advolo Terms & Conditions '+TERMS_VERSION+' (ads4u.net/terms.html)','Date & time: '+signed.at,'I have read and agree to the Terms & Conditions and Privacy Policy on behalf of '+brand+', and I am authorised to do so. I agree to be contacted on WhatsApp and email.'].join('\n');
 window.open(wa(msg),'_blank','noopener');
 $('sent1').classList.add('on');$('cont1').hidden=false;
 });
@@ -441,7 +463,7 @@ $('driveForm').addEventListener('submit',function(e){e.preventDefault();
 var d=$('drive').value.trim();
 window.open(wa('Hi Advolo, here are my creatives'+(brand?' for '+brand:'')+': '+(d||'(sending files here on WhatsApp)')),'_blank','noopener');});
 /* restore */
-try{brand=sessionStorage.getItem('advolo_brand')||'';setWa3();var st=+sessionStorage.getItem('advolo_step');if(st>1&&st<5)go(st);}catch(e){}
+try{brand=sessionStorage.getItem('advolo_brand')||'';var sg=sessionStorage.getItem('advolo_signed');if(sg){signed=JSON.parse(sg);$('signedNote').textContent='\u2713 Agreement signed by '+signed.name+' on '+signed.at;}setWa3();var st=+sessionStorage.getItem('advolo_step');if(st>1&&st<5)go(st);}catch(e){}
 })();
 </script>
 </body>
