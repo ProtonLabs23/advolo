@@ -274,6 +274,40 @@ body.qm .qz{min-height:100vh;min-height:100svh;display:flex;flex-direction:colum
 .btn-wa{display:inline-flex;align-items:center;gap:10px}
 .wa-ic{width:22px;height:22px;flex:none}
 #qzCta[hidden]{display:none!important}
+.cons-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:56px;align-items:start;margin-bottom:72px}
+.cons-top .sec-head{margin-bottom:0}
+@media (max-width:960px){.cons-top{grid-template-columns:1fr;gap:40px}}
+.chat-demo{margin:0}
+.cd-tabs{display:flex;gap:8px;margin-bottom:12px}
+.cd-tab{appearance:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid var(--lineL);background:transparent;color:var(--ink);font:600 15px/1 'Space Grotesk',sans-serif;cursor:pointer}
+.cd-tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--bone)}
+.cd-tab:focus-visible{outline:3px solid var(--accentD);outline-offset:2px}
+.cd-dot{display:inline-block;width:14px;height:14px;border-radius:50%;flex:none}
+.cd-dot.v{background:radial-gradient(circle at 35% 35%,#E9FFF6,#2EF2C8 40%,#1E7BFF 75%,#0A0B0E);box-shadow:0 0 0 1.5px #7CFFC4}
+.cd-dot.r{background:radial-gradient(circle at 35% 35%,#FFF1FA,#FF4FD8 40%,#9B6BFF 75%,#0A0B0E);box-shadow:0 0 0 1.5px #FF7AD9}
+.cd-dot.big{width:36px;height:36px}
+.cd-win{background:#101114;border-radius:22px;overflow:hidden;box-shadow:0 24px 60px -24px rgba(16,17,20,.45);border:1px solid #2A2B30}
+.cd-head{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid #2A2B30}
+.cd-head b{display:block;color:#F3EFE6;font:700 16px/1.2 'Space Grotesk',sans-serif}
+.cd-head span{font-size:13px;color:#A9A69F}
+.cd-head .cd-time{margin-left:auto;font:500 12px/1 'JetBrains Mono',monospace;color:#A9A69F}
+.cd-body{height:380px;overflow:hidden;padding:18px;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;-webkit-mask-image:linear-gradient(transparent,#000 56px);mask-image:linear-gradient(transparent,#000 56px)}
+.cd-m{max-width:86%;padding:11px 14px;border-radius:16px;font-size:15px;line-height:1.5;animation:cdIn .35s ease both}
+.cd-m.me{align-self:flex-end;background:#C6FF00;color:#101114;border-bottom-right-radius:5px}
+.cd-m.bot{align-self:flex-start;background:#1E1F24;color:#F3EFE6;border-bottom-left-radius:5px;border:1px solid #2A2B30}
+.cd-m.bot b{color:#C6FF00;font-weight:600}
+.cd-m ul{margin:6px 0 0;padding-left:18px}.cd-m li{margin:2px 0}
+.cd-typing{align-self:flex-start;display:flex;gap:5px;padding:14px 16px;border-radius:16px;background:#1E1F24;border:1px solid #2A2B30}
+.cd-typing i{width:7px;height:7px;border-radius:50%;background:#A9A69F;animation:cdDot 1s infinite}
+.cd-typing i:nth-child(2){animation-delay:.15s}.cd-typing i:nth-child(3){animation-delay:.3s}
+@keyframes cdIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes cdDot{0%,60%,100%{opacity:.3;transform:none}30%{opacity:1;transform:translateY(-3px)}}
+.cd-input{display:flex;align-items:center;justify-content:space-between;margin:0 14px 14px;padding:12px 16px;border-radius:999px;background:#17181C;border:1px solid #2A2B30;color:#5C5952;font-size:14px}
+.cd-input.typing{color:#F3EFE6}
+.cd-input i{width:28px;height:28px;border-radius:50%;background:#C6FF00;flex:none;background:#C6FF00 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 19V5M5 12l7-7 7 7' fill='none' stroke='%23101114' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.cd-cap{margin-top:10px;font:500 12px/1.4 'JetBrains Mono',monospace;letter-spacing:.04em;color:var(--mutedD)}
+@media (max-width:520px){.cd-body{height:420px}.cd-m{font-size:14.5px}}
+@media (prefers-reduced-motion:reduce){.cd-m,.cd-typing i{animation:none}}
 </style>
 </head>
 <body>
@@ -497,10 +531,24 @@ el.addEventListener('click',done);el.addEventListener('animationend',function(e)
 
 <section class="sec light">
 <div class="wrap">
+<div class="cons-top">
 <div class="sec-head">
 <p class="eyebrow">Your consultants</p>
 <h2 class="display h2">Answers at 2am. <span class="hl">Humans at 10am.</span></h2>
 <p class="lede">Two Smart Intelligence consultants read your live numbers around the clock. A human team is on chat Monday to Saturday. Tap their icons to meet them.</p>
+</div>
+<figure class="chat-demo" aria-label="Sample chat with Vishwas and Rachna">
+<div class="cd-tabs" role="tablist">
+<button type="button" role="tab" class="cd-tab" data-who="vishwas" aria-selected="true"><i class="cd-dot v"></i>Ask Vishwas</button>
+<button type="button" role="tab" class="cd-tab" data-who="rachna" aria-selected="false"><i class="cd-dot r"></i>Ask Rachna</button>
+</div>
+<div class="cd-win">
+<div class="cd-head"><i class="cd-dot big v" id="cdAv"></i><div><b id="cdName">Vishwas</b><span>Numbers · online now</span></div><span class="cd-time" id="cdTime">2:07 am</span></div>
+<div class="cd-body" id="cdBody" aria-live="polite"></div>
+<div class="cd-input" aria-hidden="true"><span id="cdType">Ask anything about your ads…</span><i></i></div>
+</div>
+<figcaption class="cd-cap">Sample chat. Example brand and numbers.</figcaption>
+</figure>
 </div>
 <div class="grid">
 <div class="card persona"><button type="button" class="av av-btn orb-btn" data-who="vishwas" aria-pressed="false" aria-label="Hear Vishwas introduce himself"><canvas class="orb" data-orb="vishwas" width="208" height="208" aria-hidden="true"></canvas><span class="av-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="pl" d="M8 5.5v13l11-6.5z"/><rect class="st" x="6.5" y="6.5" width="11" height="11" rx="2"/></svg></span></button><span class="tag">Smart Intelligence · Numbers · 24/7</span><h3 class="h3">Vishwas</h3><p>Reads your live numbers and explains, in plain words, what&#39;s working, what isn&#39;t, why sales moved, and what your bill is so far.</p></div>
@@ -845,6 +893,55 @@ function loop(now){var dt=Math.min(0.05,(now-last)/1000);last=now;
 orbs.forEach(function(o){draw(o,0);});
 if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(en){orbs.forEach(function(o){if(o.c===en.target)o.vis=en.isIntersecting;});});});orbs.forEach(function(o){io.observe(o.c);});}
 requestAnimationFrame(loop);
+})();
+</script>
+<script>
+(function(){
+var CH={
+vishwas:{name:'Vishwas',sub:'Numbers · online now',time:'2:07 am',msgs:[
+['me','Why were sales low yesterday?'],
+['bot','Your ads brought <b>₹18,400</b> in sales yesterday, down from ₹26,000 the day before. Two reasons:<ul><li>Your best ad, the kurta try-on reel, has been seen about 4 times by the same people, so fewer of them are clicking.</li><li>Sundays are usually your slowest day.</li></ul>'],
+['bot','The team has already moved more budget to your two newer ads. I&#39;ll tell you tomorrow how they did.'],
+['me','And what&#39;s my bill so far this month?'],
+['bot','You&#39;ve spent <b>₹2,00,000</b> and your ads brought <b>₹8,00,000</b> in sales. That&#39;s ₹4 for every ₹1. Your rate is 6%, so the bill so far is <b>₹48,000</b> + GST.']]},
+rachna:{name:'Rachna',sub:'Content · online now',time:'11:42 pm',msgs:[
+['me','What should I film this week?'],
+['bot','Try-on videos sell best for you: 3 of your top 5 ads are try-ons. But people have seen the current ones a lot, so it&#39;s time for fresh ones.'],
+['bot','Here&#39;s one to film:<ul><li><b>Hook:</b> “This kurta survived a 12-hour wedding.”</li><li><b>Shot 1:</b> close-up of the fabric, 3 sec.</li><li><b>Shot 2:</b> walk towards the camera, 5 sec.</li><li><b>Shot 3:</b> a twirl, with the price on screen.</li></ul>Film near a window in daylight. About 20 minutes.'],
+['me','Can I shoot it on my phone?'],
+['bot','Yes! Your phone is perfect. Send it over when it&#39;s done and we&#39;ll put it live as an ad.']]}
+};
+var body=document.getElementById('cdBody');if(!body)return;
+var typeEl=document.getElementById('cdType'),inp=typeEl.parentNode;
+var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+var who='vishwas',run=0,timers=[],started=false;
+function later(f,ms){timers.push(setTimeout(f,ms));}
+function clear(){timers.forEach(clearTimeout);timers=[];body.innerHTML='';typeEl.textContent='Ask anything about your ads…';inp.classList.remove('typing');}
+function add(kind,html){var d=document.createElement('div');d.className='cd-m '+kind;d.innerHTML=html;body.appendChild(d);while(body.scrollHeight>body.clientHeight+2&&body.children.length>1)body.removeChild(body.firstChild);}
+function head(){var c=CH[who];document.getElementById('cdName').textContent=c.name;document.querySelector('.cd-head span').textContent=c.sub;document.getElementById('cdTime').textContent=c.time;document.getElementById('cdAv').className='cd-dot big '+(who==='rachna'?'r':'v');}
+function play(){
+ clear();head();var my=++run,c=CH[who],t=500;
+ if(RM){c.msgs.forEach(function(m){add(m[0],m[1]);});return;}
+ c.msgs.forEach(function(m){
+  if(m[0]==='me'){
+   var txt=m[1].replace(/&#39;/g,"'");
+   later(function(){if(my!==run)return;inp.classList.add('typing');typeEl.textContent='';},t);
+   for(var i=1;i<=txt.length;i++)(function(i){later(function(){if(my!==run)return;typeEl.textContent=txt.slice(0,i);},t+120+i*38);})(i);
+   t+=120+txt.length*38+350;
+   later(function(){if(my!==run)return;inp.classList.remove('typing');typeEl.textContent='Ask anything about your ads…';add('me',m[1]);},t);
+   t+=500;
+  }else{
+   later(function(){if(my!==run)return;var ty=document.createElement('div');ty.className='cd-typing';ty.innerHTML='<i></i><i></i><i></i>';body.appendChild(ty);},t);
+   t+=1300;
+   later(function(){if(my!==run)return;var ty=body.querySelector('.cd-typing');if(ty)ty.remove();add('bot',m[1]);},t);
+   t+=Math.min(3600,900+m[1].replace(/<[^>]+>/g,'').length*16);
+  }
+ });
+ later(function(){if(my!==run)return;who=who==='vishwas'?'rachna':'vishwas';sel();play();},t+2500);
+}
+function sel(){document.querySelectorAll('.cd-tab').forEach(function(b){b.setAttribute('aria-selected',b.dataset.who===who?'true':'false');});}
+document.querySelectorAll('.cd-tab').forEach(function(b){b.addEventListener('click',function(){who=b.dataset.who;sel();play();});});
+if('IntersectionObserver' in window){new IntersectionObserver(function(es,o){if(es[0].isIntersecting&&!started){started=true;play();o.disconnect();}},{threshold:.35}).observe(body);}else play();
 })();
 </script>
 </body>
