@@ -438,10 +438,10 @@ el.addEventListener('click',done);el.addEventListener('animationend',function(e)
 <div class="dash" role="img" aria-label="Sample dashboard with illustrative numbers">
 <div class="dash-top"><span><b>Your brand</b> · This month</span><span class="sample">Sample · illustrative numbers</span></div>
 <div class="kpis">
-<div class="kpi"><small>Sales from ads</small><b>₹6,00,000</b><span>₹3 in sales for every ₹1</span></div>
+<div class="kpi"><small>Sales from ads</small><b>₹8,00,000</b><span>₹4 in sales for every ₹1</span></div>
 <div class="kpi"><small>Ad spend vs budget</small><b>₹2,00,000</b><div class="bar"><i style="width:80%"></i></div></div>
 <div class="kpi"><small>Your rate</small><b>7%</b><span>₹1L – ₹3L spend tier</span></div>
-<div class="kpi"><small>Bill so far</small><b>₹42,000</b><span>+ 18% GST</span></div>
+<div class="kpi"><small>Bill so far</small><b>₹56,000</b><span>+ 18% GST</span></div>
 </div>
 <div class="dash-body">
 <div class="dash-col"><h4>What we changed</h4>
@@ -453,11 +453,11 @@ el.addEventListener('click',done);el.addEventListener('animationend',function(e)
 <div class="dash-col"><h4>Ask Vishwas</h4>
 <div class="chat">
 <div class="msg me">Why did sales go up this week?</div>
-<div class="msg ai"><b>Vishwas</b>Most of the lift came from your best-selling ad after we moved budget to it. You&#39;re getting ₹3 in sales for every ₹1 on ads.</div>
+<div class="msg ai"><b>Vishwas</b>Most of the lift came from your best-selling ad after we moved budget to it. You&#39;re getting ₹4 in sales for every ₹1 on ads.</div>
 </div></div>
 </div>
 </div>
-<p class="note">Sample uses the example from our pricing: ₹2,00,000 spend and ₹6,00,000 in sales. Your dashboard shows your real numbers.</p>
+<p class="note">Sample uses the example from our pricing: ₹2,00,000 spend and ₹8,00,000 in sales (₹4 back for every ₹1). Your dashboard shows your real numbers.</p>
 </div>
 </section>
 
@@ -500,7 +500,7 @@ el.addEventListener('click',done);el.addEventListener('animationend',function(e)
 </div>
 </div>
 <div class="zero"><b>₹0</b><p><strong>No minimum fee.</strong> If the ads bring no sales in a month, that month&#39;s fee is zero.</p></div>
-<div class="ex"><b>Example:</b> ₹2,00,000 of ad spend and ₹6,00,000 of sales → 7% × ₹6,00,000 = a fee of <b>₹42,000</b>.</div>
+<div class="ex"><b>Example:</b> ₹2,00,000 of ad spend and ₹8,00,000 of sales → 7% × ₹8,00,000 = a fee of <b>₹56,000</b>.</div>
 <div class="disclose"><strong>Read this before you sign up.</strong> Your fee is based on the sales Meta Ads Manager reports from your ads (Meta&#39;s standard count: purchases within 7 days of a click or 1 day of a view). It can differ from your store&#39;s own orders, and it isn&#39;t reduced for cancellations, returns, RTO or unpaid COD orders.<br><strong>Why Meta&#39;s number?</strong> It&#39;s the one figure we can both see, in your own Ads Manager, and every invoice comes with a screenshot of it as proof.</div>
 <div class="grid" style="margin-top:20px">
 <div class="card"><span class="tag">Optional call plans</span><h3 class="h4">2 calls a month · ₹6,999</h3><h3 class="h4" style="margin-top:8px">4 calls a month · ₹12,999</h3><p>45 minutes each. Outside the fee cap. Unused calls don&#39;t carry over.</p></div>
@@ -706,7 +706,7 @@ Ld.textContent='You sell through your own Shopify store and spend enough on ads 
 var lo=A.spend==='30to1';
 $('qzRateNum').textContent=lo?'8%':'7% or less';
 $('qzRateTxt').textContent='of the sales your ads bring, as Meta reports them. Not your total store sales. Plus 18% GST.';
-$('qzEx').innerHTML=lo?'<b>Example:</b> your ads bring \u20b91,00,000 in sales this month \u2192 you pay <b>\u20b98,000</b> + GST. They bring nothing \u2192 you pay <b>\u20b90</b>.':'<b>Example:</b> you spend \u20b92,00,000 and your ads bring \u20b96,00,000 \u2192 7% \u00d7 \u20b96,00,000 = <b>\u20b942,000</b> + GST. Above \u20b93,00,000 spend the rate drops to 5%. The fee is capped at \u20b91,00,000 a month.';
+$('qzEx').innerHTML=lo?'<b>Example:</b> your ads bring \u20b91,00,000 in sales this month \u2192 you pay <b>\u20b98,000</b> + GST. They bring nothing \u2192 you pay <b>\u20b90</b>.':'<b>Example:</b> you spend \u20b92,00,000 and your ads bring \u20b98,00,000 \u2192 7% \u00d7 \u20b98,00,000 = <b>\u20b956,000</b> + GST. Above \u20b93,00,000 spend the rate drops to 5%. The fee is capped at \u20b91,00,000 a month.';
 $('qzRate').hidden=false;$('qzWa').hidden=false;$('qzAfter').hidden=false;
 if(FIRST[A.pain])steps(FIRST[A.pain]);
 C.textContent='Get started';C.href='start.html';
