@@ -396,6 +396,14 @@ details.disclose summary{cursor:pointer}details.disclose[open] summary{margin-bo
  .tl.on .tl-fill{height:100%}
 }
 @media (prefers-reduced-motion:reduce){.tl-fill,.tl-dot{transition:none!important}}
+@media (max-width:720px){
+ .apply{text-align:left!important;padding-bottom:120px}
+ .apply .h2{margin:0}
+ .apply .lede{margin-left:0!important;margin-right:0!important}
+ .apply .btns{flex-direction:column;align-items:stretch;justify-content:flex-start}
+ .apply .btns .btn{width:100%}
+ .btns{gap:10px}
+}
 </style>
 </head>
 <body>
@@ -728,12 +736,12 @@ el.addEventListener('click',done);el.addEventListener('animationend',function(e)
 <section id="signup" class="sec apply">
 <div class="wrap">
 <p class="eyebrow">Ready when you are</p>
-<h2 class="display h2">No sales? <span class="hl">No fee.</span></h2>
+<h2 class="display h2">No sales?<br><span class="hl">No fee.</span></h2>
 <p class="lede">Live in 48 hours.</p>
 <div class="btns">
 <a class="btn" href="start.html">Get started</a>
 <a class="btn btn-ghost" href="https://wa.me/918595956554?text=Hi%20Advolo%2C%20I%27d%20like%20to%20know%20more%20before%20signing%20up." target="_blank" rel="noopener">Talk to us on WhatsApp first</a>
-<a class="btn btn-ghost" href="analyser.html">Not ready? Free Business Analyser</a>
+<a class="btn btn-ghost" href="analyser.html">Free Business Analyser</a>
 </div>
 </div>
 </section>
