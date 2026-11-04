@@ -344,6 +344,7 @@ fieldset.fld{border:0;margin:0;padding:0}
 .vc-top input{width:9ch;background:transparent;border:0;border-bottom:1.5px dashed rgba(198,255,0,.5);color:var(--accent);font:700 22px/1 'Space Grotesk',sans-serif;text-align:right;padding:2px 0;-moz-appearance:textfield}
 .vc-top input::-webkit-outer-spin-button,.vc-top input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 .vc-top input:focus{outline:none;border-bottom-color:var(--accent)}
+#vcRoasN{width:5ch;margin-right:4px}
 .vc-pre{color:var(--accent);font:700 22px/1 'Space Grotesk',sans-serif}
 .cp-share{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
 .cp-pts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:56px 0}
@@ -372,7 +373,7 @@ fieldset.fld{border:0;margin:0;padding:0}
 <div class="vc-grid" style="margin-top:0">
 <div class="vc-in">
 <div class="vc-sl"><div class="vc-top"><span>Your monthly ad spend</span><span><span class="vc-pre">₹</span><input id="vcSpendN" type="number" inputmode="numeric" min="0" step="1000" aria-label="Monthly ad spend in rupees"></span></div><input type="range" id="vcSpend" min="30000" max="1000000" step="5000" value="50000" aria-label="Monthly ad spend"></div>
-<div class="vc-sl"><div class="vc-top"><span>Sales for every ₹1 spent</span><span><span class="vc-pre">₹</span><input id="vcRoasN" type="number" inputmode="decimal" min="0" step="0.1" aria-label="Sales for every rupee spent"></span></div><input type="range" id="vcRoas" min="0" max="8" step="0.1" value="3" aria-label="Sales for every rupee spent"><small>Not sure? Total sales from ads ÷ ad spend. ₹2–4 is common.</small></div>
+<div class="vc-sl"><div class="vc-top"><span>Your ROAS</span><span><input id="vcRoasN" type="number" inputmode="decimal" min="0" step="0.1" aria-label="ROAS"><span class="vc-pre">x</span></span></div><input type="range" id="vcRoas" min="0" max="8" step="0.1" value="3" aria-label="ROAS"><small>Not sure? Sales from ads ÷ ad spend. 2–4x is common.</small></div>
 <div class="vc-sl"><div class="vc-top"><span>An agency would charge you</span><span><span class="vc-pre">₹</span><input id="vcAgN" type="number" inputmode="numeric" min="0" step="1000" aria-label="Agency monthly retainer in rupees"></span></div><input type="range" id="vcAg" min="10000" max="150000" step="5000" value="40000" aria-label="Agency monthly retainer"><small>Monthly retainer. Use a quote you&#39;ve had.</small></div>
 </div>
 <div class="vc-out" aria-live="polite">
@@ -429,7 +430,7 @@ function draw(){
  if(d>=0){box.classList.remove('more');$('vcSaveL').textContent='You save';$('vcSave').textContent=inr(d);$('vcSaveS').textContent='a month ('+inr(d*12)+' a year)';}
  else{box.classList.add('more');$('vcSaveL').textContent='You pay';$('vcSave').textContent=inr(-d)+' more';$('vcSaveS').textContent='only because your ads are selling '+inr(sales)+' a month';}
  $('vcZero').textContent=inr(v.ag);
- $('cpWa').href='https://wa.me/918595956554?text='+encodeURIComponent('Hi Advolo! I used your calculator.\n\u2022 Ad spend: '+inr(v.spend)+'/month\n\u2022 Sales for every \u20b91: \u20b9'+v.roas+'\n\u2022 Advolo would cost: '+inr(fee)+' vs agency '+inr(v.ag)+'\n\nI\u2019d like to get started.');
+ $('cpWa').href='https://wa.me/918595956554?text='+encodeURIComponent('Hi Advolo! I used your calculator.\n\u2022 Ad spend: '+inr(v.spend)+'/month\n\u2022 ROAS: '+v.roas+'x\n\u2022 Advolo would cost: '+inr(fee)+' vs agency '+inr(v.ag)+'\n\nI\u2019d like to get started.');
 }
 var keys=['spend','roas','ag'];
 pairs.forEach(function(p,i){

@@ -698,7 +698,7 @@ el.addEventListener('click',done);el.addEventListener('animationend',function(e)
 <div class="vc-grid">
 <div class="vc-in">
 <div class="vc-sl"><div class="vc-top"><span>Your monthly ad spend</span><output id="vcSpendO"></output></div><input type="range" id="vcSpend" min="30000" max="1000000" step="5000" value="50000" aria-label="Monthly ad spend"></div>
-<div class="vc-sl"><div class="vc-top"><span>Sales for every ₹1 spent</span><output id="vcRoasO"></output></div><input type="range" id="vcRoas" min="0" max="8" step="0.1" value="3" aria-label="Sales for every rupee spent"></div>
+<div class="vc-sl"><div class="vc-top"><span>Your ROAS</span><output id="vcRoasO"></output></div><input type="range" id="vcRoas" min="0" max="8" step="0.1" value="3" aria-label="ROAS"></div>
 <div class="vc-sl"><div class="vc-top"><span>An agency would charge you</span><output id="vcAgO"></output></div><input type="range" id="vcAg" min="10000" max="150000" step="5000" value="40000" aria-label="Agency monthly retainer"><small>Monthly retainer. Move it to match quotes you&#39;ve had.</small></div>
 </div>
 <div class="vc-out" aria-live="polite">
@@ -1084,7 +1084,7 @@ function u(){
  var sp=+$('vcSpend').value,ro=+$('vcRoas').value,ag=+$('vcAg').value;
  [$('vcSpend'),$('vcRoas'),$('vcAg')].forEach(fill);
  var sales=sp*ro,r=rate(sp),fee=Math.min(100000,sales*r/100);
- $('vcSpendO').textContent=inr(sp);$('vcRoasO').textContent='\u20b9'+ro.toFixed(1);$('vcAgO').textContent=inr(ag);
+ $('vcSpendO').textContent=inr(sp);$('vcRoasO').textContent=ro.toFixed(1)+'x';$('vcAgO').textContent=inr(ag);
  $('vcSales').textContent=inr(sales);$('vcA').textContent=inr(ag);$('vcV').textContent=inr(fee);
  var mx=Math.max(ag,fee,1);$('vcBarA').style.width=(ag/mx*100)+'%';$('vcBarV').style.width=Math.max(fee/mx*100,fee>0?1.5:0)+'%';
  $('vcRate').textContent=r+'% of '+inr(sales)+' in sales'+(sales*r/100>100000?' (capped at \u20b91,00,000)':'')+'.';
