@@ -406,6 +406,40 @@ details.disclose summary{cursor:pointer}details.disclose[open] summary{margin-bo
 }
 body:not(.qm) #quiz:not(.done){display:none}
 @media (max-width:720px){.nav ul li:not(:last-child){display:none}.nav .wrap{flex-wrap:nowrap}}
+.vs-calc{margin-top:20px;background:var(--ink);color:var(--bone);border-radius:24px;padding:clamp(24px,4vw,44px)}
+.vs-calc .h3{color:var(--bone)}
+.vs-calc .eyebrow{color:var(--accent)}
+.vc-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:28px;align-items:start}
+@media (max-width:860px){.vc-grid{grid-template-columns:1fr;gap:28px}}
+.vc-sl{margin-bottom:26px}
+.vc-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:10px;font-size:16px;color:var(--muted)}
+.vc-top output{font:700 22px/1 'Space Grotesk',sans-serif;color:var(--accent);white-space:nowrap}
+.vc-sl small{display:block;margin-top:6px;font-size:13px;color:#77746D}
+.vs-calc input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent;cursor:pointer;--p:50%}
+.vs-calc input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:6px;background:linear-gradient(90deg,var(--accent) var(--p),#2A2B30 var(--p))}
+.vs-calc input[type=range]::-moz-range-track{height:6px;border-radius:6px;background:#2A2B30}
+.vs-calc input[type=range]::-moz-range-progress{height:6px;border-radius:6px;background:var(--accent)}
+.vs-calc input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--bone);border:4px solid var(--accent);margin-top:-9px}
+.vs-calc input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--bone);border:4px solid var(--accent)}
+.vs-calc input[type=range]:focus-visible{outline:3px solid var(--accent);outline-offset:4px;border-radius:8px}
+.vc-out{background:var(--ink2);border:1px solid var(--line);border-radius:18px;padding:24px}
+.vc-sales{margin:0 0 18px;color:var(--muted);font-size:16px}.vc-sales b{color:var(--bone)}
+.vc-bars{display:grid;gap:12px}
+.vc-row{display:grid;grid-template-columns:62px minmax(60px,1fr) auto;gap:12px;align-items:center}
+.vc-lab{font-size:15px;color:var(--muted)}
+.vc-track{height:30px;background:#1E1F24;border-radius:8px;overflow:hidden}
+.vc-track i{display:block;height:100%;border-radius:8px;background:#5C5952;transition:width .4s cubic-bezier(.2,.8,.2,1)}
+.vc-row.adv .vc-track i{background:var(--accent)}
+.vc-row b{font:700 19px/1 'Space Grotesk',sans-serif;text-align:right}
+.vc-row.adv b{color:var(--accent)}
+.vc-rate{margin:14px 0 0;font-size:14px;color:var(--muted)}
+.vc-save{margin-top:20px;padding:18px 20px;border-radius:14px;background:var(--accent);color:var(--ink);display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px}
+.vc-save b{font:400 clamp(32px,4vw,44px)/1 'Anton',sans-serif;letter-spacing:.02em}
+.vc-save span{font-size:16px;font-weight:600}
+.vc-save.more{background:#1E1F24;color:var(--bone);border:1px solid var(--line)}
+.vc-zero{margin:16px 0 0;font-size:15px;color:var(--muted)}.vc-zero b{color:var(--bone)}
+.vc-note{margin:8px 0 0;font-size:13px;color:#77746D}
+@media (prefers-reduced-motion:reduce){.vc-track i{transition:none}}
 </style>
 </head>
 <body>
@@ -658,6 +692,28 @@ el.addEventListener('click',done);el.addEventListener('animationend',function(e)
 </div>
 <div class="zero"><b>₹0</b><p><strong>if your ads bring no sales.</strong></p></div>
 <div class="ex"><b>Example:</b> ₹8,00,000 in sales at 6% = <b>₹48,000</b>.</div>
+<div class="vs-calc" id="calc">
+<div class="vc-head"><p class="eyebrow" style="margin:0 0 10px">Do the maths</p><h3 class="h3">7% sounds like a lot? Compare it with an agency.</h3></div>
+<div class="vc-grid">
+<div class="vc-in">
+<div class="vc-sl"><div class="vc-top"><span>Your monthly ad spend</span><output id="vcSpendO"></output></div><input type="range" id="vcSpend" min="30000" max="1000000" step="5000" value="50000" aria-label="Monthly ad spend"></div>
+<div class="vc-sl"><div class="vc-top"><span>Sales for every ₹1 spent</span><output id="vcRoasO"></output></div><input type="range" id="vcRoas" min="0" max="8" step="0.1" value="3" aria-label="Sales for every rupee spent"></div>
+<div class="vc-sl"><div class="vc-top"><span>An agency would charge you</span><output id="vcAgO"></output></div><input type="range" id="vcAg" min="10000" max="150000" step="5000" value="40000" aria-label="Agency monthly retainer"><small>Monthly retainer. Move it to match quotes you&#39;ve had.</small></div>
+</div>
+<div class="vc-out" aria-live="polite">
+<p class="vc-sales">Your ads bring <b id="vcSales"></b> in sales</p>
+<div class="vc-bars">
+<div class="vc-row"><span class="vc-lab">Agency</span><span class="vc-track"><i id="vcBarA"></i></span><b id="vcA"></b></div>
+<div class="vc-row adv"><span class="vc-lab">Advolo</span><span class="vc-track"><i id="vcBarV"></i></span><b id="vcV"></b></div>
+</div>
+<p class="vc-rate" id="vcRate"></p>
+<div class="vc-save"><span id="vcSaveL">You save</span><b id="vcSave"></b><span id="vcSaveS">a month</span></div>
+<p class="vc-zero">Bad month, no sales? <b>Advolo: ₹0.</b> Agency: still <b id="vcZero"></b>.</p>
+<p class="vc-note">Both plus GST. Commission capped at ₹1,00,000 a month.</p>
+</div>
+</div>
+</div>
+
 <details class="disclose"><summary><strong>How billing works</strong></summary>You pick how sales are counted: Meta-reported sales, or your Shopify orders net of returns and RTO. Commission builds up as sales come in. Each time it reaches ₹5,000 we auto-debit it plus GST (max ₹10,000 per debit), with an email notice at least 24 hours before and a breakdown after.</details>
 <div class="chips"><span>Strategy calls from ₹6,999/mo</span><span>Shopify store build from ₹10,000</span><span>You pay Meta directly for ads</span></div>
 
@@ -1016,6 +1072,28 @@ addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u();})(
 <script>
 (function(){var t=document.getElementById('tl');if(!t)return;if(!('IntersectionObserver' in window)){t.classList.add('on');return;}
 new IntersectionObserver(function(e,o){if(e[0].isIntersecting){t.classList.add('on');o.disconnect();}},{threshold:.4}).observe(t);})();
+</script>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i);};if(!$('calc'))return;
+function inr(n){n=Math.round(n);return '\u20b9'+n.toLocaleString('en-IN');}
+function rate(sp){return sp<=100000?7:sp<=300000?6:4;}
+function fill(el){el.style.setProperty('--p',((el.value-el.min)/(el.max-el.min)*100)+'%');}
+function u(){
+ var sp=+$('vcSpend').value,ro=+$('vcRoas').value,ag=+$('vcAg').value;
+ [$('vcSpend'),$('vcRoas'),$('vcAg')].forEach(fill);
+ var sales=sp*ro,r=rate(sp),fee=Math.min(100000,sales*r/100);
+ $('vcSpendO').textContent=inr(sp);$('vcRoasO').textContent='\u20b9'+ro.toFixed(1);$('vcAgO').textContent=inr(ag);
+ $('vcSales').textContent=inr(sales);$('vcA').textContent=inr(ag);$('vcV').textContent=inr(fee);
+ var mx=Math.max(ag,fee,1);$('vcBarA').style.width=(ag/mx*100)+'%';$('vcBarV').style.width=Math.max(fee/mx*100,fee>0?1.5:0)+'%';
+ $('vcRate').textContent=r+'% of '+inr(sales)+' in sales'+(sales*r/100>100000?' (capped at \u20b91,00,000)':'')+'.';
+ var d=ag-fee,box=$('vcSave').parentNode;
+ if(d>=0){box.classList.remove('more');$('vcSaveL').textContent='You save';$('vcSave').textContent=inr(d);$('vcSaveS').textContent='a month ('+inr(d*12)+' a year)';}
+ else{box.classList.add('more');$('vcSaveL').textContent='You pay';$('vcSave').textContent=inr(-d)+' more';$('vcSaveS').textContent='only because your ads are selling '+inr(sales)+' a month';}
+ $('vcZero').textContent=inr(ag);
+}
+['vcSpend','vcRoas','vcAg'].forEach(function(i){$(i).addEventListener('input',u);});u();
+})();
 </script>
 </body>
 </html>
