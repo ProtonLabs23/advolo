@@ -513,13 +513,13 @@ el.addEventListener('click',done);el.addEventListener('animationend',function(e)
 <div class="qz-cost" id="qzRate" hidden>
 <div class="qz-rate"><b id="qzRateNum"></b><span id="qzRateTxt"></span></div>
 <p class="qz-ex" id="qzEx"></p>
-<ul class="qz-facts"><li><b>₹5,000</b> refundable deposit</li><li><b>₹0</b> in any month your ads bring no sales</li><li><b>No retainer</b> · cancel with 15 days&#39; notice</li></ul>
+<ul class="qz-facts"><li><b>₹5,000</b> one-time onboarding fee</li><li><b>₹0</b> in any month your ads bring no sales</li><li><b>No retainer</b> · cancel with 15 days&#39; notice</li></ul>
 </div>
 <div class="qz-first" id="qzFirst" hidden><h3 id="qzFirstH">What we&#39;d do first</h3><ol class="qz-steps" id="qzSteps"></ol></div>
 <div class="qz-after" id="qzAfter" hidden><h3>What happens after you click</h3><ol>
 <li><b>Sign up</b>with your work email. No password.</li>
 <li><b>Connect Meta</b>by adding us as a partner on your ad account.</li>
-<li><b>Set up auto-debit</b>with a refundable ₹5,000 deposit.</li>
+<li><b>Set up auto-debit</b>with a one-time ₹5,000 onboarding fee.</li>
 <li><b>We go live</b>usually within 48 hours.</li>
 </ol></div>
 <div class="qz-wa">
@@ -677,7 +677,7 @@ el.addEventListener('click',done);el.addEventListener('animationend',function(e)
 <p class="lede">Plus 18% GST.</p>
 </div>
 <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
-<div class="card"><span class="tag">Refundable deposit</span><div class="price">₹5,000</div><p>Set against your final bill when you leave.</p></div>
+<div class="card"><span class="tag">One-time onboarding fee</span><div class="price">₹5,000</div><p>Paid once when you sign up. Non-refundable. Plus GST.</p></div>
 <div class="card"><span class="tag">Monthly fee · % of sales from ads</span>
 <table class="ptable">
 <thead><tr><th scope="col">Ad spend in the month</th><th scope="col">Fee</th></tr></thead>
@@ -782,7 +782,7 @@ el.addEventListener('click',done);el.addEventListener('animationend',function(e)
 <h2 class="display h2">Straight answers.</h2>
 </div>
 <div class="faq">
-<details><summary>What if the ads bring no sales?</summary><p>Then that month&#39;s fee is ₹0. There&#39;s no minimum fee. Your ₹5,000 deposit is refundable.</p></details>
+<details><summary>What if the ads bring no sales?</summary><p>Then that month&#39;s fee is ₹0. There&#39;s no minimum fee.</p></details>
 <details><summary>What counts as &quot;sales&quot;?</summary><p>You choose at sign-up: the sales Meta reports from your ads, or your Shopify orders net of returns and RTO. Every debit comes with a breakdown.</p></details>
 <details><summary>Do you work with non-Shopify websites or marketplaces?</summary><p>No. We work only on Shopify stores, and we don&#39;t run marketplace ads. No Shopify store yet? We can build one, starting at ₹10,000.</p></details>
 <details><summary>Who owns the ad account and data?</summary><p>You do. We only get partner access. Campaigns, pixel and data stay in your account, even after you leave.</p></details>
@@ -1089,7 +1089,7 @@ function u(){
  var mx=Math.max(ag,fee,1);$('vcBarA').style.width=(ag/mx*100)+'%';$('vcBarV').style.width=Math.max(fee/mx*100,fee>0?1.5:0)+'%';
  $('vcRate').textContent=r+'% of '+inr(sales)+' in sales'+(sales*r/100>100000?' (capped at \u20b91,00,000)':'')+'.';
  var d=ag-fee,box=$('vcSave').parentNode;
- if(d>=0){box.classList.remove('more');$('vcSaveL').textContent='You save';$('vcSave').textContent=inr(d);$('vcSaveS').textContent='a month ('+inr(d*12)+' a year)';}
+ if(d>=0){box.classList.remove('more');$('vcSaveL').textContent='You save';$('vcSave').textContent=inr(d);$('vcSaveS').textContent='a month';}
  else{box.classList.add('more');$('vcSaveL').textContent='You pay';$('vcSave').textContent=inr(-d)+' more';$('vcSaveS').textContent='only because your ads are selling '+inr(sales)+' a month';}
  $('vcZero').textContent=inr(ag);
 }

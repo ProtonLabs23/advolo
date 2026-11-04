@@ -415,11 +415,11 @@ fieldset.fld{border:0;margin:0;padding:0}
 <tbody>
 <tr><th scope="row">How you pay</th><td>Fixed monthly retainer</td><td class="adv">A % of sales from your ads</td></tr>
 <tr><th scope="row">At your numbers</th><td class="num" id="cmA"></td><td class="adv num" id="cmV"></td></tr>
-<tr><th scope="row">Over a year</th><td class="num" id="cmAY"></td><td class="adv num" id="cmVY"></td></tr>
 <tr><th scope="row">A month with no sales</th><td class="num" id="cmAZ"></td><td class="adv num">₹0</td></tr>
 <tr><th scope="row">They earn more when</th><td>They sign more clients</td><td class="adv">Your sales grow</td></tr>
 <tr><th scope="row">Lock-in</th><td>Often 3–6 months</td><td class="adv">None. 15 days&#39; notice</td></tr>
-<tr><th scope="row">Upfront</th><td>Usually a month in advance</td><td class="adv">₹5,000 refundable deposit</td></tr>
+<tr><th scope="row">Upfront</th><td>Usually a month in advance</td><td class="adv">₹5,000 one-time onboarding fee</td></tr>
+<tr><th scope="row">When you can reach us</th><td>Office hours</td><td class="adv">24/7</td></tr>
 <tr><th scope="row">Seeing results</th><td>A monthly report</td><td class="adv">Live dashboard, checked every 3 hours</td></tr>
 <tr><th scope="row">Fee cap</th><td class="no">None</td><td class="adv">₹1,00,000 a month</td></tr>
 </tbody>
@@ -457,10 +457,10 @@ function draw(){
  var mx=Math.max(v.ag,fee,1);$('vcBarA').style.width=(v.ag/mx*100)+'%';$('vcBarV').style.width=Math.max(fee/mx*100,fee>0?1.5:0)+'%';
  $('vcRate').textContent=r+'% of '+inr(sales)+' in sales'+(sales*r/100>100000?' (capped at \u20b91,00,000)':'')+'.';
  var d=v.ag-fee,box=$('vcSave').parentNode;
- if(d>=0){box.classList.remove('more');$('vcSaveL').textContent='You save';$('vcSave').textContent=inr(d);$('vcSaveS').textContent='a month ('+inr(d*12)+' a year)';}
+ if(d>=0){box.classList.remove('more');$('vcSaveL').textContent='You save';$('vcSave').textContent=inr(d);$('vcSaveS').textContent='a month';}
  else{box.classList.add('more');$('vcSaveL').textContent='You pay';$('vcSave').textContent=inr(-d)+' more';$('vcSaveS').textContent='only because your ads are selling '+inr(sales)+' a month';}
  $('vcZero').textContent=inr(v.ag);
- $('cmA').textContent=inr(v.ag)+'/mo';$('cmV').textContent=inr(fee)+'/mo';$('cmAY').textContent=inr(v.ag*12);$('cmVY').textContent=inr(fee*12);$('cmAZ').textContent=inr(v.ag);
+ $('cmA').textContent=inr(v.ag)+'/mo';$('cmV').textContent=inr(fee)+'/mo';$('cmAZ').textContent=inr(v.ag);
  $('cpWa').href='https://wa.me/918595956554?text='+encodeURIComponent('Hi Advolo! I used your calculator.\n\u2022 Ad spend: '+inr(v.spend)+'/month\n\u2022 ROAS: '+v.roas+'x\n\u2022 Advolo would cost: '+inr(fee)+' vs agency '+inr(v.ag)+'\n\nI\u2019d like to get started.');
 }
 var keys=['spend','roas','ag'];
