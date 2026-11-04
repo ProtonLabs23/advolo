@@ -394,14 +394,14 @@ fieldset.fld{border:0;margin:0;padding:0}
 <section class="step" id="s2" aria-labelledby="h2t">
 <h2 id="h2t" tabindex="-1">Set up auto-debit</h2>
 <p class="signed" id="signedNote"></p>
-<p class="lede">One secure Razorpay step: approve your auto-debit mandate and pay a refundable ₹5,000 security deposit.</p>
+<p class="lede">Pay your onboarding &amp; security deposit. Then approve your auto-debit link, which we send to your WhatsApp and email.</p>
 <div class="box hl">
-<div class="amount">₹5,000<small>Refundable security deposit · set against your final bill</small></div>
+<div class="amount">₹5,900<small>₹5,000 onboarding &amp; security deposit + ₹900 GST · set against your final bill</small></div>
 <div style="margin-top:28px" id="payWrap"></div>
-<p class="note" style="margin-top:18px">Secure by Razorpay. Your link is made for your account, so it comes to your WhatsApp and email.</p>
+<p class="note" style="margin-top:18px">Secure by Razorpay: UPI, cards, net banking. Your auto-debit link is made for your account, so it comes separately.</p>
 </div>
 <div class="box"><h3 class="h4">How you&#39;re billed after that</h3><p>Commission builds up as sales come in. Each time it reaches ₹5,000 we email you a notice at least 24 hours before, then auto-debit it plus GST (max ₹10,000 per debit). After every debit you get a breakdown: period, sales, rate and amount. No sales, no commission.</p></div>
-<div class="navrow"><button type="button" class="btn" data-go="3">I&#39;ve set it up · Continue</button><button type="button" class="linkbtn" data-go="1">← Back</button></div>
+<div class="navrow"><button type="button" class="btn" data-go="3">I&#39;ve paid · Continue</button><button type="button" class="linkbtn" data-go="1">← Back</button></div>
 </section>
 
 <!-- STEP 3 -->
@@ -459,7 +459,7 @@ fieldset.fld{border:0;margin:0;padding:0}
 /* === Settings: fill these in === */
 var WA_NUMBER='918595956554';
 var RAZORPAY_BUTTON_ID='';   /* e.g. pl_XXXXXXXXXXXX from Razorpay → Payment Button */
-var PAYMENT_LINK='';        /* or a Razorpay payment link, e.g. https://rzp.io/rzp/XXXX */
+var PAYMENT_LINK='https://rzp.io/rzp/advolo-onboarding';        /* or a Razorpay payment link, e.g. https://rzp.io/rzp/XXXX */
 var FORM_EMAIL='support@ads4u.net'; /* signup details are emailed here */
 /* ================================= */
 var $=function(id){return document.getElementById(id);};
@@ -501,7 +501,7 @@ var form=document.createElement('form');var sc=document.createElement('script');
 sc.src='https://checkout.razorpay.com/v1/payment-button.js';sc.async=true;sc.setAttribute('data-payment_button_id',RAZORPAY_BUTTON_ID);
 form.appendChild(sc);pw.appendChild(form);
 }else if(PAYMENT_LINK){
-pw.innerHTML='<a class="btn" href="'+PAYMENT_LINK+'" target="_blank" rel="noopener">Set up auto-debit</a>';
+pw.innerHTML='<a class="btn" href="'+PAYMENT_LINK+'" target="_blank" rel="noopener">Pay ₹5,900 securely</a>';
 }else{
 pw.innerHTML='<span class="pay-ph">We&#39;ll send your secure Razorpay link on WhatsApp and email within a few working hours. Open it, choose how to pay, and approve.</span><a class="btn btn-ghost" style="margin-top:16px;color:var(--bone);justify-content:center;text-align:center" href="'+wa('Hi Advolo, I’ve signed up'+(brand?' for '+brand:'')+'. Please send my auto-debit link.')+'" target="_blank" rel="noopener">Ask for my link on WhatsApp</a>';
 }
