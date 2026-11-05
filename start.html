@@ -322,6 +322,8 @@ h2[tabindex="-1"]:focus{outline:none}
 .rv small{display:block;color:var(--muted);font-size:14px;margin-top:2px}
 .rv li.now small{color:var(--accent)}
 @media (prefers-reduced-motion:reduce){.rv-dot,.rv li.now .rv-i::before{animation:none}}
+.offer{display:inline-block;font:600 12px/1 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--ink);padding:5px 8px;border-radius:6px;vertical-align:middle}
+.offer-l{margin:0 0 12px;color:var(--muted);font-size:16px}.offer-l s{opacity:.7}
 </style>
 </head>
 <body>
@@ -392,9 +394,9 @@ h2[tabindex="-1"]:focus{outline:none}
 </div><small>45 minutes each, plus GST. You can change this later.</small></fieldset>
 <div class="box hl sign" style="margin-top:8px">
 <h3 class="h4">Sign the agreement</h3>
-<p style="color:var(--muted);margin:10px 0 0">Please read the <a href="terms.html" target="_blank" rel="noopener" style="color:var(--bone)">Advolo Terms &amp; Conditions (v1.1)</a> before you sign. The key points:</p>
+<p style="color:var(--muted);margin:10px 0 0">Please read the <a href="terms.html" target="_blank" rel="noopener" style="color:var(--bone)">Advolo Terms &amp; Conditions (v1.2)</a> before you sign. The key points:</p>
 <ul class="keys">
-<li>A one-time ₹5,000 onboarding fee (non-refundable)</li>
+<li>A one-time onboarding fee of ₹7,999, now ₹4,999 (festive offer), plus GST. Non-refundable.</li>
 <li>Commission: a % of your sales (the source you pick above), capped at ₹1,00,000 a month. ₹0 commission with no sales.</li>
 <li>You authorise auto-debit: each time unpaid commission reaches ₹5,000 we debit it (max ₹10,000 per debit, plus GST), with an email notice at least 24 hours before</li>
 <li>Removing our Meta access or cancelling the mandate ends the service and settles your account immediately</li>
@@ -402,7 +404,7 @@ h2[tabindex="-1"]:focus{outline:none}
 <li>No guaranteed results. Cancel anytime with 15 days&#39; notice.</li>
 </ul>
 <div class="fld" style="margin-top:22px"><label for="sig">Type your full name as your signature <span class="req">*</span></label><input type="text" id="sig" name="sig" required autocomplete="name" class="sigfield"></div>
-<label class="check" style="margin-top:16px"><input type="checkbox" id="terms" required> <span>I have read and agree to the Advolo Terms &amp; Conditions (v1.1) and Privacy Policy on behalf of the business above, and I&#39;m authorised to do so. <span class="req">*</span></span></label>
+<label class="check" style="margin-top:16px"><input type="checkbox" id="terms" required> <span>I have read and agree to the Advolo Terms &amp; Conditions (v1.2) and Privacy Policy on behalf of the business above, and I&#39;m authorised to do so. <span class="req">*</span></span></label>
 </div>
 <label class="check"><input type="checkbox" id="consent" required> <span>Advolo can contact me on WhatsApp and email about my account. <span class="req">*</span></span></label>
 <p class="err" id="err1" role="alert">Please fill in the required fields, type your name to sign, and tick both boxes.</p>
@@ -416,7 +418,7 @@ h2[tabindex="-1"]:focus{outline:none}
 <p class="signed" id="signedNote"></p>
 <p class="lede">Pay your one-time onboarding fee. Then approve your auto-debit link, which we send to your WhatsApp and email.</p>
 <div class="box hl">
-<div class="amount">₹5,900<small>₹5,000 onboarding fee + ₹900 GST · one-time, non-refundable</small></div>
+<p class="offer-l"><span class="offer">Festive offer</span> <s>₹7,999</s> → ₹4,999</p><div class="amount">₹5,899<small>₹4,999 onboarding fee + ₹900 GST · one-time, non-refundable</small></div>
 <div style="margin-top:28px" id="payWrap"></div>
 <p class="note" style="margin-top:18px">Secure by Razorpay: UPI, cards, net banking. Your auto-debit link is made for your account, so it comes separately.</p>
 </div>
@@ -492,7 +494,7 @@ var PAYMENT_LINK='https://rzp.io/rzp/advolo-onboarding';        /* or a Razorpay
 var FORM_EMAIL='support@ads4u.net'; /* signup details are emailed here */
 /* ================================= */
 var $=function(id){return document.getElementById(id);};
-var brand='',signed=null;var TERMS_VERSION='v1.1';
+var brand='',signed=null;var TERMS_VERSION='v1.2';
 function wa(text){return 'https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(text);}
 function go(n){
 if(n>=2&&!signed){n=1;$('err1').textContent='Please sign the agreement and send your details before paying.';$('err1').classList.add('on');}
@@ -531,7 +533,7 @@ var form=document.createElement('form');var sc=document.createElement('script');
 sc.src='https://checkout.razorpay.com/v1/payment-button.js';sc.async=true;sc.setAttribute('data-payment_button_id',RAZORPAY_BUTTON_ID);
 form.appendChild(sc);pw.appendChild(form);
 }else if(PAYMENT_LINK){
-pw.innerHTML='<a class="btn" href="'+PAYMENT_LINK+'" target="_blank" rel="noopener">Pay ₹5,900 securely</a>';
+pw.innerHTML='<a class="btn" href="'+PAYMENT_LINK+'" target="_blank" rel="noopener">Pay ₹5,899 securely</a>';
 }else{
 pw.innerHTML='<span class="pay-ph">We&#39;ll send your secure Razorpay link on WhatsApp and email within a few working hours. Open it, choose how to pay, and approve.</span><a class="btn btn-ghost" style="margin-top:16px;color:var(--bone);justify-content:center;text-align:center" href="'+wa('Hi Advolo, I’ve signed up'+(brand?' for '+brand:'')+'. Please send my auto-debit link.')+'" target="_blank" rel="noopener">Ask for my link on WhatsApp</a>';
 }

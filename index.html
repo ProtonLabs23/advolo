@@ -440,6 +440,8 @@ body:not(.qm) #quiz:not(.done){display:none}
 .vc-zero{margin:16px 0 0;font-size:15px;color:var(--muted)}.vc-zero b{color:var(--bone)}
 .vc-note{margin:8px 0 0;font-size:13px;color:#77746D}
 @media (prefers-reduced-motion:reduce){.vc-track i{transition:none}}
+.was{text-decoration:line-through;text-decoration-thickness:2px;opacity:.5;font-size:.55em;margin-right:.3em;vertical-align:middle}
+.offer{display:inline-block;font:600 12px/1 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--ink);padding:5px 8px;border-radius:6px;vertical-align:middle}
 </style>
 </head>
 <body>
@@ -513,13 +515,13 @@ el.addEventListener('click',done);el.addEventListener('animationend',function(e)
 <div class="qz-cost" id="qzRate" hidden>
 <div class="qz-rate"><b id="qzRateNum"></b><span id="qzRateTxt"></span></div>
 <p class="qz-ex" id="qzEx"></p>
-<ul class="qz-facts"><li><b>₹5,000</b> one-time onboarding fee</li><li><b>₹0</b> in any month your ads bring no sales</li><li><b>No retainer</b> · cancel with 15 days&#39; notice</li></ul>
+<ul class="qz-facts"><li><b><s class="was">₹7,999</s>₹4,999</b> onboarding fee · festive offer</li><li><b>₹0</b> in any month your ads bring no sales</li><li><b>No retainer</b> · cancel with 15 days&#39; notice</li></ul>
 </div>
 <div class="qz-first" id="qzFirst" hidden><h3 id="qzFirstH">What we&#39;d do first</h3><ol class="qz-steps" id="qzSteps"></ol></div>
 <div class="qz-after" id="qzAfter" hidden><h3>What happens after you click</h3><ol>
 <li><b>Sign up</b>with your work email. No password.</li>
 <li><b>Connect Meta</b>by adding us as a partner on your ad account.</li>
-<li><b>Set up auto-debit</b>with a one-time ₹5,000 onboarding fee.</li>
+<li><b>Set up auto-debit</b>with a one-time onboarding fee (festive offer: ₹4,999).</li>
 <li><b>We go live</b>usually within 48 hours.</li>
 </ol></div>
 <div class="qz-wa">
@@ -677,7 +679,7 @@ el.addEventListener('click',done);el.addEventListener('animationend',function(e)
 <p class="lede">Plus 18% GST.</p>
 </div>
 <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
-<div class="card"><span class="tag">One-time onboarding fee</span><div class="price">₹5,000</div><p>Paid once when you sign up. Non-refundable. Plus GST.</p></div>
+<div class="card"><span class="tag">One-time onboarding fee</span> <span class="offer">Festive offer</span><div class="price"><s class="was">₹7,999</s>₹4,999</div><p>Paid once when you sign up. Non-refundable. Plus GST.</p></div>
 <div class="card"><span class="tag">Monthly fee · % of sales from ads</span>
 <table class="ptable">
 <thead><tr><th scope="col">Ad spend in the month</th><th scope="col">Fee</th></tr></thead>
