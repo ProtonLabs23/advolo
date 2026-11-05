@@ -304,6 +304,24 @@ fieldset.fld{border:0;margin:0;padding:0}
 .vs-bub b{color:var(--accent);font-weight:600}
 .vs-bub.pop{animation:vsPop .35s cubic-bezier(.2,.9,.3,1.3)}
 @keyframes vsPop{from{opacity:0;transform:translateY(6px) scale(.96)}to{opacity:1;transform:none}}
+h2[tabindex="-1"]:focus{outline:none}
+.rv-h{font-size:clamp(30px,4vw,48px);line-height:1.05;max-width:18ch}
+.rv-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--accent);margin-right:8px;vertical-align:middle;animation:rvP 1.6s ease-in-out infinite}
+@keyframes rvP{0%,100%{box-shadow:0 0 0 0 rgba(198,255,0,.5)}50%{box-shadow:0 0 0 7px rgba(198,255,0,0)}}
+.rv{list-style:none;margin:32px 0 0;padding:0;display:grid;gap:0}
+.rv li{display:grid;grid-template-columns:28px 1fr;gap:14px;position:relative;padding:0 0 22px}
+.rv li:not(:last-child)::after{content:"";position:absolute;left:13px;top:28px;bottom:2px;width:2px;background:var(--line)}
+.rv li.ok:not(:last-child)::after{background:var(--accent)}
+.rv-i{width:28px;height:28px;border-radius:50%;border:2px solid var(--line);background:var(--ink);display:grid;place-items:center}
+.rv li.ok .rv-i{background:var(--accent);border-color:var(--accent)}
+.rv li.ok .rv-i::before{content:"";width:9px;height:5px;border:solid var(--ink);border-width:0 0 2.5px 2.5px;transform:rotate(-45deg) translate(1px,-1px)}
+.rv li.now .rv-i{border-color:var(--accent)}
+.rv li.now .rv-i::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--accent);animation:rvP 1.6s ease-in-out infinite}
+.rv b{display:block;font:600 17px/1.3 'Space Grotesk',sans-serif;color:var(--bone);padding-top:3px}
+.rv li:not(.ok):not(.now) b{color:var(--muted)}
+.rv small{display:block;color:var(--muted);font-size:14px;margin-top:2px}
+.rv li.now small{color:var(--accent)}
+@media (prefers-reduced-motion:reduce){.rv-dot,.rv li.now .rv-i::before{animation:none}}
 </style>
 </head>
 <body>
@@ -314,6 +332,7 @@ fieldset.fld{border:0;margin:0;padding:0}
 </div></header>
 
 <main class="start"><div class="wrap">
+<div class="intro">
 <div class="volo-say"><span class="volo happy" aria-hidden="true"><svg viewBox="0 0 200 200"><circle class="vo-halo" cx="100" cy="100" r="96" fill="url(#voH)"/><g class="vo-body"><circle cx="100" cy="100" r="62" fill="url(#voG)"/><ellipse cx="80" cy="72" rx="24" ry="14" fill="url(#voS)"/><g class="vo-look"><g class="vo-eyes"><rect x="76" y="92" width="11" height="22" rx="5.5" fill="#101114"/><rect x="113" y="92" width="11" height="22" rx="5.5" fill="#101114"/></g><g class="vo-joy" fill="none" stroke="#101114" stroke-width="8" stroke-linecap="round"><path d="M72 108q9-14 18 0"/><path d="M110 108q9-14 18 0"/></g></g></g></svg></span><p class="vs-bub pop">Welcome! I&#39;m <b>Volo</b>. Four short steps and your ads are on their way.</p></div>
 <p class="eyebrow">Get started · about 10 minutes</p>
 <h1 class="display" style="font-size:clamp(40px,5.4vw,72px);max-width:16ch">Let&#39;s get your ads running.</h1>
@@ -325,6 +344,7 @@ fieldset.fld{border:0;margin:0;padding:0}
 <li data-p="3">03 <span>Meta access</span></li>
 <li data-p="4">04 <span>Creatives</span></li>
 </ol>
+</div>
 
 <!-- STEP 1 -->
 <section class="step on" id="s1" aria-labelledby="h1t">
@@ -430,22 +450,31 @@ fieldset.fld{border:0;margin:0;padding:0}
 <ol class="howto">
 <li><span>Put your photos and videos in a <b>Google Drive folder</b>. Vertical (9:16) phone videos work best.</span></li>
 <li><span>Set sharing to <b>Anyone with the link can view</b>.</span></li>
-<li><span>Paste the link below and send it to us.</span></li>
+<li><span>Paste the link below. It opens WhatsApp with the link ready to send.</span></li>
 </ol>
 <form class="f" id="driveForm" novalidate style="margin-top:28px">
 <div class="fld"><label for="drive">Google Drive folder link</label><input type="url" id="drive" name="drive" placeholder="https://drive.google.com/…" inputmode="url"><small>No Drive folder? Just send the files to us on WhatsApp instead.</small></div>
-<div class="navrow"><button type="submit" class="btn">Send on WhatsApp</button><button type="button" class="linkbtn" data-go="3">← Back</button></div>
+<div class="navrow"><button type="submit" class="btn">Send &amp; finish →</button><button type="button" class="linkbtn" id="skip4">I&#39;ll send them later</button><button type="button" class="linkbtn" data-go="3">← Back</button></div>
 </form>
-<div class="box hl" style="margin-top:48px">
-<p class="eyebrow" style="margin-bottom:12px">You&#39;re all set</p>
-<h3 class="h3">Here&#39;s what happens next</h3>
-<ol class="next">
-<li><b>Audit</b>We check your account, pixel, store and past ads, and fix tracking.</li>
-<li><b>The honest call</b>If something isn&#39;t ready for ads, we tell you before you spend.</li>
-<li><b>Launch</b>Campaigns built around what already sells, usually within 48 hours.</li>
-<li><b>Every 3 hours</b>Your ads are checked, and every change is logged.</li>
+</section>
+
+<!-- STEP 5: in review -->
+<section class="step" id="s5" aria-labelledby="h5t">
+<div class="volo-say"><span class="volo happy" aria-hidden="true"><svg viewBox="0 0 200 200"><circle class="vo-halo" cx="100" cy="100" r="96" fill="url(#voH)"/><g class="vo-body"><circle cx="100" cy="100" r="62" fill="url(#voG)"/><ellipse cx="80" cy="72" rx="24" ry="14" fill="url(#voS)"/><g class="vo-look"><g class="vo-eyes"><rect x="76" y="92" width="11" height="22" rx="5.5" fill="#101114"/><rect x="113" y="92" width="11" height="22" rx="5.5" fill="#101114"/></g><g class="vo-joy" fill="none" stroke="#101114" stroke-width="8" stroke-linecap="round"><path d="M72 108q9-14 18 0"/><path d="M110 108q9-14 18 0"/></g></g></g></svg></span><p class="vs-bub pop">That&#39;s everything, <b id="doneBrand">thank you</b>! Our team takes it from here.</p></div>
+<p class="eyebrow"><span class="rv-dot"></span>In review</p>
+<h2 id="h5t" tabindex="-1" class="rv-h">You&#39;re in. We&#39;re reviewing your account.</h2>
+<p class="lede">No need to do anything else. We&#39;ll message you on WhatsApp at each step, and send your personal dashboard link once your ads are live.</p>
+<ol class="rv" aria-label="Your onboarding status">
+<li class="ok"><span class="rv-i"></span><div><b>Agreement signed</b><small id="rvSigned">Done</small></div></li>
+<li class="ok"><span class="rv-i"></span><div><b>Onboarding fee</b><small>We&#39;ll confirm your payment on WhatsApp</small></div></li>
+<li class="ok"><span class="rv-i"></span><div><b>Meta access</b><small>We&#39;ll check it came through</small></div></li>
+<li class="ok" id="rvCreo"><span class="rv-i"></span><div><b>Creatives</b><small id="rvCreoS">Sent</small></div></li>
+<li class="now"><span class="rv-i"></span><div><b>Account review &amp; audit</b><small>In progress · within 24 hours</small></div></li>
+<li><span class="rv-i"></span><div><b>Auto-debit link</b><small>Sent to your WhatsApp and email, approve it in 2 minutes</small></div></li>
+<li><span class="rv-i"></span><div><b>Ads go live</b><small>Usually within 48 hours</small></div></li>
+<li><span class="rv-i"></span><div><b>Your dashboard link</b><small>Track sales, ROAS and every change we make, live</small></div></li>
 </ol>
-</div>
+<div class="box"><h3 class="h4">Questions meanwhile?</h3><p style="color:var(--muted);margin:8px 0 18px">We&#39;re available 24/7.</p><a class="btn" href="https://wa.me/918595956554?text=Hi%20Advolo%2C%20I%20just%20finished%20signing%20up." target="_blank" rel="noopener" id="rvWa">Message us on WhatsApp</a></div>
 </section>
 </div></main>
 
@@ -467,7 +496,8 @@ var brand='',signed=null;var TERMS_VERSION='v1.1';
 function wa(text){return 'https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(text);}
 function go(n){
 if(n>=2&&!signed){n=1;$('err1').textContent='Please sign the agreement and send your details before paying.';$('err1').classList.add('on');}
-for(var i=1;i<=4;i++){$('s'+i).classList.toggle('on',i===n);}
+for(var i=1;i<=5;i++){$('s'+i).classList.toggle('on',i===n);}
+document.querySelector('.intro').style.display=(n===5?'none':'');if(n===5)fillDone();
 document.querySelectorAll('.progress li').forEach(function(li){var p=+li.dataset.p;li.className=p===n?'on':(p<n?'done':'');if(p===n)li.setAttribute('aria-current','step');else li.removeAttribute('aria-current');});
 var h=$('h'+n+'t');window.scrollTo({top:0});h.focus({preventScroll:true});
 try{sessionStorage.setItem('advolo_step',n);}catch(e){}
@@ -509,11 +539,21 @@ pw.innerHTML='<span class="pay-ph">We&#39;ll send your secure Razorpay link on W
 $('copyId').addEventListener('click',function(){var t=$('bmid').textContent;var b=this;
 (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy';},1800);}).catch(function(){b.textContent='Select and copy';});});
 /* step 4 */
+function finish(creo){
+try{sessionStorage.setItem('advolo_creo',creo);localStorage.setItem('advolo_done',JSON.stringify({brand:brand,at:Date.now(),creo:creo}));}catch(e){}
+try{fetch('https://formsubmit.co/ajax/'+FORM_EMAIL,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({_subject:'Onboarding finished: '+(brand||'new client'),_template:'table',_captcha:'false',Business:brand||'-',Creatives:creo,'Signed by':signed?signed.name:'-','Finished at':new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})+' IST'})}).catch(function(){});}catch(e){}
+go(5);}
+function fillDone(){var c='';try{c=sessionStorage.getItem('advolo_creo')||'';}catch(e){}
+$('doneBrand').textContent=brand||'thank you';
+if(signed)$('rvSigned').textContent='Signed by '+signed.name+' on '+signed.at;
+var later=c==='later';$('rvCreo').className=later?'':'ok';$('rvCreoS').textContent=later?'Send them on WhatsApp whenever you\u2019re ready':(c&&c!=='whatsapp'?'Drive link sent':'Sent on WhatsApp');
+$('rvWa').href=wa('Hi Advolo, I just finished signing up'+(brand?' for '+brand:'')+'.');}
 $('driveForm').addEventListener('submit',function(e){e.preventDefault();
 var d=$('drive').value.trim();
-window.open(wa('Hi Advolo, here are my creatives'+(brand?' for '+brand:'')+': '+(d||'(sending files here on WhatsApp)')),'_blank','noopener');});
+window.open(wa('Hi Advolo, here are my creatives'+(brand?' for '+brand:'')+': '+(d||'(sending files here on WhatsApp)')),'_blank','noopener');finish(d||'whatsapp');});
+$('skip4').addEventListener('click',function(){finish('later');});
 /* restore */
-try{brand=sessionStorage.getItem('advolo_brand')||'';var sg=sessionStorage.getItem('advolo_signed');if(sg){signed=JSON.parse(sg);$('signedNote').textContent='\u2713 Agreement signed by '+signed.name+' on '+signed.at;}var st=+sessionStorage.getItem('advolo_step');if(st>1&&st<5)go(st);}catch(e){}
+try{brand=sessionStorage.getItem('advolo_brand')||'';var sg=sessionStorage.getItem('advolo_signed');if(sg){signed=JSON.parse(sg);$('signedNote').textContent='\u2713 Agreement signed by '+signed.name+' on '+signed.at;}var st=+sessionStorage.getItem('advolo_step');if(st>1&&st<6)go(st);}catch(e){}
 })();
 </script>
 </body>
