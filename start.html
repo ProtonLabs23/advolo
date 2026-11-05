@@ -417,10 +417,10 @@ fieldset.fld{border:0;margin:0;padding:0}
 <li><span>Under <b>Users</b>, open <b>Partners</b>, then <b>Add</b> → <b>Give a partner access to your assets</b>.</span></li>
 <li><span>Paste Advolo&#39;s Business ID from above.</span></li>
 <li><span>Give access to your <b>ad account</b> (full control, so we can manage campaigns), your <b>Facebook page</b> and your <b>Meta pixel / dataset</b>.</span></li>
-<li><span>Save, then message us on WhatsApp so we can confirm.</span></li>
+<li><span>Save, then tap Continue. We&#39;ll confirm once access comes through.</span></li>
 </ol>
 <p class="note">Meta sometimes renames these menus. If you get stuck, message us and we&#39;ll walk you through it.</p>
-<div class="navrow"><a class="btn btn-ghost" id="wa3" target="_blank" rel="noopener">Tell us it&#39;s done on WhatsApp</a><button type="button" class="btn" data-go="4">Continue</button><button type="button" class="linkbtn" data-go="2">← Back</button></div>
+<div class="navrow"><button type="button" class="btn" data-go="4">Continue</button><button type="button" class="linkbtn" data-go="2">← Back</button></div>
 </section>
 
 <!-- STEP 4 -->
@@ -508,14 +508,12 @@ pw.innerHTML='<span class="pay-ph">We&#39;ll send your secure Razorpay link on W
 /* step 3 */
 $('copyId').addEventListener('click',function(){var t=$('bmid').textContent;var b=this;
 (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy';},1800);}).catch(function(){b.textContent='Select and copy';});});
-function setWa3(){$('wa3').href=wa('Hi Advolo, I’ve added your Business ID as a partner on my ad account, page and pixel.'+(brand?' Brand: '+brand:''));}
-setWa3();
 /* step 4 */
 $('driveForm').addEventListener('submit',function(e){e.preventDefault();
 var d=$('drive').value.trim();
 window.open(wa('Hi Advolo, here are my creatives'+(brand?' for '+brand:'')+': '+(d||'(sending files here on WhatsApp)')),'_blank','noopener');});
 /* restore */
-try{brand=sessionStorage.getItem('advolo_brand')||'';var sg=sessionStorage.getItem('advolo_signed');if(sg){signed=JSON.parse(sg);$('signedNote').textContent='\u2713 Agreement signed by '+signed.name+' on '+signed.at;}setWa3();var st=+sessionStorage.getItem('advolo_step');if(st>1&&st<5)go(st);}catch(e){}
+try{brand=sessionStorage.getItem('advolo_brand')||'';var sg=sessionStorage.getItem('advolo_signed');if(sg){signed=JSON.parse(sg);$('signedNote').textContent='\u2713 Agreement signed by '+signed.name+' on '+signed.at;}var st=+sessionStorage.getItem('advolo_step');if(st>1&&st<5)go(st);}catch(e){}
 })();
 </script>
 </body>
