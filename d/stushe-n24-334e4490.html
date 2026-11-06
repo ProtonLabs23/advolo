@@ -233,10 +233,10 @@ function drawChart(s){
 var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){if(window.__series)drawChart(window.__series)},150)});
 var KEYID='advolo_pc_'+location.pathname;
 function b64d(s){return Uint8Array.from(atob(s),function(c){return c.charCodeAt(0)})}
-function tryCode(code){code=(code||'').trim().toUpperCase().replace(/\s+/g,'');if(code.length===8&&code.indexOf('-')<0)code=code.slice(0,4)+'-'+code.slice(4);
+function tryCode(code){code=(code||'').toUpperCase().replace(/[^A-Z0-9]/g,'');if(code.length!==8)return Promise.reject(new Error('len'));code=code.slice(0,4)+'-'+code.slice(4);if(!window.crypto||!crypto.subtle)return Promise.reject(new Error('nocrypto'));
  return crypto.subtle.importKey('raw',new TextEncoder().encode(code),'PBKDF2',false,['deriveKey']).then(function(k){return crypto.subtle.deriveKey({name:'PBKDF2',salt:b64d(ENC.s),iterations:250000,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['decrypt'])}).then(function(key){return crypto.subtle.decrypt({name:'AES-GCM',iv:b64d(ENC.i)},key,b64d(ENC.c))}).then(function(buf){DATA=JSON.parse(new TextDecoder().decode(buf));try{localStorage.setItem(KEYID,code)}catch(e){}$('gate').remove();load();return true})}
 $('gateF').addEventListener('submit',function(e){e.preventDefault();var b=$('gbtn');b.disabled=true;b.textContent='Opening\u2026';$('gerr').textContent='';
- tryCode($('gcode').value).catch(function(){$('gerr').textContent='That passcode didn\u2019t work. Check it and try again, or message us on WhatsApp.';b.disabled=false;b.textContent='Open dashboard'})});
+ tryCode($('gcode').value).catch(function(err){$('gerr').textContent=(err&&err.message==='nocrypto')?'This browser can\u2019t open the dashboard. Open the link in Chrome or Safari.':(err&&err.message==='len')?'The passcode has 8 letters and numbers, like ABCD-1234.':'That passcode didn\u2019t work. Check it and try again, or message us on WhatsApp.';b.disabled=false;b.textContent='Open dashboard'})});
 (function(){var c=null;try{c=localStorage.getItem(KEYID)}catch(e){}if(c)tryCode(c).catch(function(){try{localStorage.removeItem(KEYID)}catch(e){}});else $('gcode').focus();})();
 })();
 </script>
