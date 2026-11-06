@@ -93,6 +93,15 @@ td.n,th.n{text-align:right;white-space:nowrap}
 .gate .gbox{width:100%;max-width:400px}.gate h1{font:700 30px/1.15 'Space Grotesk';margin:22px 0 8px}.gate p{color:var(--muted);margin:0 0 22px}
 .gate input{width:100%;font:600 20px/1 'JetBrains Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--bone);background:var(--ink2);border:1.5px solid var(--line);border-radius:12px;padding:15px 16px}
 .gate input:focus{outline:none;border-color:var(--accent)}.gate .btn{width:100%;margin-top:14px;padding:16px}.gate .gerr{color:var(--red);margin-top:12px;min-height:1.4em;font-size:14px}
+.rc{margin-bottom:16px}.rc-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.rc-av svg{width:48px;height:48px;display:block}.rc h2{font:700 18px/1.2 'Space Grotesk';margin:0}.rc-sub{font-size:13px;color:var(--muted)}
+.rc-soon{margin-left:auto;font:600 11px/1 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#FF9CCB;border:1px solid rgba(255,126,185,.45);border-radius:999px;padding:7px 10px}
+.rc-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px;counter-reset:rc}
+.rc-list li{border:1px solid var(--line);border-radius:14px;padding:16px 18px;counter-increment:rc;position:relative}
+.rc-list li::before{content:counter(rc);position:absolute;top:16px;right:18px;font:700 12px/1 'JetBrains Mono',monospace;color:var(--dim)}
+.rc-list b{display:block;font-size:16px;padding-right:20px}.rc-list p{margin:6px 0 10px;color:var(--muted);font-size:14px}
+.rc-shoot{display:inline-block;font-size:13px;color:#FF9CCB;background:rgba(255,126,185,.1);border-radius:8px;padding:6px 10px}
+@media (max-width:760px){.rc-list{grid-template-columns:1fr}.rc-soon{margin-left:0}}
 </style>
 </head>
 <body>
@@ -107,7 +116,8 @@ td.n,th.n{text-align:right;white-space:nowrap}
 <nav aria-label="Dashboard">
 <a href="#top" class="on">Overview</a>
 <a href="#ads">Ads</a>
-<a href="#changes">What we changed</a>
+<a href="#changes">Latest updates</a>
+<a href="#ideas">Creative ideas</a>
 </nav>
 <div class="side-foot">
 <a class="hide-m" href="https://wa.me/918595956554" target="_blank" rel="noopener">Talk to us · 24/7</a>
@@ -143,8 +153,14 @@ td.n,th.n{text-align:right;white-space:nowrap}
 <div class="mini"><small>Days with no sales</small><b id="mZero">–</b></div>
 </div>
 </section>
-<section class="card" id="changes"><div class="ch"><h2>What we changed</h2><span>Latest first</span></div><ul class="log" id="log"></ul></section>
+<section class="card" id="changes"><div class="ch"><h2>Latest updates</h2><span>From your numbers</span></div><ul class="log" id="log"></ul></section>
 </div>
+
+<section class="card rc" id="ideas" aria-labelledby="rcH">
+<div class="rc-top"><span class="rc-av" aria-hidden="true"><svg viewBox="0 0 48 48"><defs><radialGradient id="rcG" cx="38%" cy="32%" r="70%"><stop offset="0" stop-color="#FFE3F1"/><stop offset=".45" stop-color="#FF7EB9"/><stop offset="1" stop-color="#9C1E5A"/></radialGradient></defs><circle cx="24" cy="24" r="22" fill="url(#rcG)"/><circle cx="18" cy="21" r="2.6" fill="#2a0a18"/><circle cx="30" cy="21" r="2.6" fill="#2a0a18"/><path d="M17 29q7 6 14 0" stroke="#2a0a18" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg></span>
+<div><h2 id="rcH">Creative ideas from Rachna</h2><span class="rc-sub">Creative analyst · based on which of your ads are selling</span></div><span class="rc-soon">Weekly report coming soon</span></div>
+<ol class="rc-list" id="rcList"></ol>
+</section>
 
 <div class="grid3">
 <section class="card best" id="ads"><div class="ch"><h2>Best-selling ads</h2><span id="adsLbl"></span></div>
@@ -198,6 +214,7 @@ function draw(d){
  $('mChg').innerHTML=c.sales==null?'–':'<span class="'+(c.sales>=0?'up':'down')+'">'+(c.sales>0?'+':'')+c.sales+'%</span>';
  $('mZero').textContent=d.series.filter(function(x){return x.spend>0&&x.sales===0}).length;
  $('chartLbl').textContent='Daily · '+d.range.label.toLowerCase();$('adsLbl').textContent=d.range.label;
+ var rc=d.rachna||[];$('rcList').innerHTML=rc.map(function(x){return '<li><b>'+esc(x.title)+'</b><p>'+esc(x.why)+'</p><span class="rc-shoot">'+esc(x.shoot)+'</span></li>'}).join('');$('ideas').hidden=!rc.length;
  // log
  $('log').innerHTML=d.changes.length?d.changes.map(function(x){var t=new Date(x.at);return '<li><time datetime="'+esc(x.at)+'">'+t.toLocaleDateString('en-IN',{day:'numeric',month:'short',timeZone:'Asia/Kolkata'})+'<br>'+t.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Kolkata'})+'</time><div><b>'+esc(x.title)+'</b>'+(x.detail?'<p>'+esc(x.detail)+'</p>':'')+'</div></li>'}).join(''):'<li class="empty" style="display:block">Every change we make to your ads shows up here.</li>';
  // ads
