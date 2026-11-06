@@ -495,13 +495,13 @@ input[type=range]:focus-visible{outline:3px solid var(--accent);outline-offset:4
 <legend><span class="n">03</span>Your ads</legend>
 <div class="sl"><div class="sl-top"><span id="lSpend">Monthly Meta ad budget</span><output id="oSpend"></output></div><input type="range" id="fSpend" min="0" max="500000" step="5000" value="40000"></div>
 <div id="estOnly">
-<p class="f-l">For every ₹1 you spend on Meta ads, how much comes back in sales?</p>
-<div class="chips" id="fBack" role="radiogroup" aria-label="Sales for every rupee">
+<p class="f-l">What&#39;s your ROAS on Meta ads? <span style="color:var(--muted);font-weight:400">(sales ÷ ad spend)</span></p>
+<div class="chips" id="fBack" role="radiogroup" aria-label="ROAS">
 <button type="button" class="chip" data-v="dk" role="radio" aria-checked="true">I don&#39;t know</button>
-<button type="button" class="chip" data-v="1" role="radio" aria-checked="false">Under ₹1.5</button>
-<button type="button" class="chip" data-v="2" role="radio" aria-checked="false">₹1.5 – ₹2.5</button>
-<button type="button" class="chip" data-v="3" role="radio" aria-checked="false">₹2.5 – ₹3.5</button>
-<button type="button" class="chip" data-v="4.5" role="radio" aria-checked="false">More than ₹3.5</button>
+<button type="button" class="chip" data-v="1" role="radio" aria-checked="false">Under 1.5x</button>
+<button type="button" class="chip" data-v="2" role="radio" aria-checked="false">1.5x – 2.5x</button>
+<button type="button" class="chip" data-v="3" role="radio" aria-checked="false">2.5x – 3.5x</button>
+<button type="button" class="chip" data-v="4.5" role="radio" aria-checked="false">More than 3.5x</button>
 </div>
 <p class="f-l">Who runs your ads?</p>
 <div class="chips" id="fWho" role="radiogroup" aria-label="Who runs ads">
@@ -583,7 +583,7 @@ input[type=range]:focus-visible{outline:3px solid var(--accent);outline-offset:4
 </div>
 </div>
 
-<p class="an-disc">All figures are estimates built from your answers and typical numbers for Indian D2C brands in your category. They are not a promise of results. Sales are shown the way Meta reports them; the Advolo fee in these numbers uses the rate for your budget.</p>
+<p class="an-disc">All figures are estimates built from your answers and typical numbers for Indian D2C brands in your category. They are not a promise of results. Sales are shown the way Meta reports them.</p>
 </div>
 </section>
 </main>
@@ -637,9 +637,9 @@ radios('fCat','cat');radios('fStage','stage');radios('fBack','back');radios('fWh
 /* ---------- maths ---------- */
 var inr=function(n){return '₹'+Math.round(n).toLocaleString('en-IN');};
 var inrK=function(n){n=Math.round(n);if(n>=100000)return '₹'+(n/100000).toFixed(n%100000?1:0).replace('.0','')+'L';if(n>=1000)return '₹'+Math.round(n/1000)+'k';return '₹'+n;};
-var mult=function(x){return '₹'+(Math.round(x*10)/10).toFixed(1);};
+var mult=function(x){return (Math.round(x*10)/10).toFixed(1)+'x';};
 var clamp=function(x,a,b){return Math.max(a,Math.min(b,x));};
-function feeRate(spend){return spend<=100000?0.07:spend<=300000?0.06:0.04;}
+function feeRate(){return 0;}
 function model(o){
  /* o: aov,cost(0-1),ship,rto(0-1),spend,checks,stage,cat,back,ctrBoost */
  var c=CATS.filter(function(x){return x[0]===o.cat;})[0];
@@ -679,7 +679,7 @@ function update(){
  $('lSpend').textContent=S.stage==='pre'?'Planned monthly Meta ad budget':'Monthly Meta ad spend';
  $('estOnly').hidden=S.stage==='pre';
  $('lvFunnel').innerHTML='<li><b>~'+Math.round(m.views).toLocaleString('en-IN')+'</b><span>people see your ad</span></li><li><b>~'+Math.max(1,Math.round(m.clicks))+'</b><span>visit your store</span></li><li><b>'+inr(m.cpo)+'</b><span>of ads per order</span></li>';
- var rows=[['Sales Meta reports',m.sales,'pos'],['Comes back as RTO',-m.rtoLoss,'neg'],['Product cost',-m.prod,'neg'],['Shipping & packing',-m.ship,'neg'],['Advolo fee ('+Math.round(m.fr*100)+'%)',-m.fee,'neg'],['The ₹100 you spent',-100,'spend']];
+ var rows=[['Sales Meta reports',m.sales,'pos'],['Comes back as RTO',-m.rtoLoss,'neg'],['Product cost',-m.prod,'neg'],['Shipping & packing',-m.ship,'neg'],['The ₹100 you spent',-100,'spend']];
  var max=Math.max(m.sales,100)*1.02,run=0,h='';
  rows.forEach(function(r,i){var v=r[1],from,to;
   if(i===0){from=0;to=v;run=v;}else{from=run+v;to=run;run=run+v;}
@@ -687,9 +687,9 @@ function update(){
   var L=clamp(lo/max*100,0,99.4),W=clamp((hi-lo)/max*100,0.6,100-L);
   h+='<div class="wf-r '+r[2]+'"><span class="wf-l">'+r[0]+'</span><span class="wf-t"><i class="wf-b" style="left:'+L+'%;width:'+W+'%"></i></span><span class="wf-v">'+(v<0?'−':'+')+inr(Math.abs(v))+'</span></div>';});
  $('lvWf').innerHTML=h;
- $('lvWf').setAttribute('aria-label','From ₹100 of ads: '+inr(m.sales)+' in sales, minus RTO, product, shipping, fee and the ₹100 spent leaves '+inr(m.left));
+ $('lvWf').setAttribute('aria-label','From ₹100 of ads: '+inr(m.sales)+' in sales, minus RTO, product, shipping and the ₹100 spent leaves '+inr(m.left));
  $('lvLeftN').textContent=(m.left<0?'−':'')+inr(Math.abs(m.left));$('lvLeft').classList.toggle('loss',m.left<0);
- $('lvBe').innerHTML=m.d<=0?'<b>Every order loses money before ads.</b> Product, shipping and RTO cost more than the order brings in.':'You break even at <b>'+mult(m.be)+' in sales for every ₹1</b> on ads. This estimate gets you <b>'+mult(m.s)+'</b>.';
+ $('lvBe').innerHTML=m.d<=0?'<b>Every order loses money before ads.</b> Product, shipping and RTO cost more than the order brings in.':'You break even at a <b>'+mult(m.be)+' ROAS</b>. This estimate gets you <b>'+mult(m.s)+'</b>.';
  $('mnS').textContent=inr(m.sales);$('mnL').textContent=(m.left<0?'−':'')+inr(Math.abs(m.left));mini.classList.toggle('loss',m.left<0);
  if(!$('anRes').hidden)results();
 }
@@ -722,7 +722,7 @@ function budget(o,m){
 function problems(o,m){
  var P=[],f=function(v){return inr(v);};
  if(m.d<=0)P.push([100,'You lose money on every order, even before ads.','Product, shipping and RTO add up to more than the order value.','<b>Fix:</b> raise prices or push bundles to lift the order value, and negotiate shipping. Ads will only make this loss bigger.']);
- else if(m.s<m.be)P.push([90,'Ads can&#39;t pay for themselves yet.','You need '+mult(m.be)+' in sales for every ₹1 to break even. Brands like yours usually get around '+mult(m.s)+'.','<b>Fix:</b> lift the order value with bundles or a free-shipping threshold, and work on the store fixes below before spending more.']);
+ else if(m.s<m.be)P.push([90,'Ads can&#39;t pay for themselves yet.','You need a '+mult(m.be)+' ROAS to break even. Brands like yours usually get around '+mult(m.s)+'.','<b>Fix:</b> lift the order value with bundles or a free-shipping threshold, and work on the store fixes below before spending more.']);
  if(o.rto>=0.18)P.push([60+o.rto*100,Math.round(o.rto*100)+'% of your orders come back.','That&#39;s '+f(m.rtoLoss)+' of sales lost from every ₹100 of ads, plus shipping both ways.','<b>Fix:</b> give 5–10% off for paying online, confirm every COD order on WhatsApp before shipping, and block pincodes that keep refusing.']);
  if(!o.checks.pixel)P.push([85,'Meta can&#39;t see your sales.','Without the pixel tracking purchases, Meta can&#39;t learn who buys, so it shows your ads to the wrong people.','<b>Fix:</b> connect Shopify&#39;s Facebook &amp; Instagram app, turn on the Conversions API, and test a purchase.']);
  if(!o.checks.shopify)P.push([70,'Your store isn&#39;t on Shopify.','Advolo runs ads only for Shopify stores, where tracking and checkout are reliable.','<b>Fix:</b> move to Shopify. We can build your store, starting at ₹10,000.']);
@@ -732,7 +732,7 @@ function problems(o,m){
  if(o.spend<30000&&o.stage!=='pre')P.push([50,'Your budget is below what Meta needs to learn.','Under ₹30,000 a month, Meta struggles to find your buyers, so results swing a lot.','<b>Fix:</b> spend on fewer ads with more budget each, or wait until you can run ₹30,000 a month.']);
  if(o.aov<500)P.push([48,'Your order value is low for paid ads.','At '+f(o.aov)+' an order, ad costs eat most of the margin.','<b>Fix:</b> sell packs and combos, and set a free-shipping threshold just above your current order value.']);
  var PF={cac:[52,'Customers cost too much.','Each order costs about '+f(m.cpo)+' in ads.','<b>Fix:</b> put budget behind your proven best seller and test new hooks every week instead of new products.'],
- notprof:[50,'Ads aren&#39;t profitable.','Your break-even is '+mult(m.be)+' for every ₹1.','<b>Fix:</b> judge ads on what&#39;s left after RTO, product and shipping, not on sales alone. Cut ads below break-even fast.'],
+ notprof:[50,'Ads aren&#39;t profitable.','Your break-even ROAS is '+mult(m.be)+'.','<b>Fix:</b> judge ads on what&#39;s left after RTO, product and shipping, not on sales alone. Cut ads below break-even fast.'],
  fatigue:[47,'Ads stop working after a few weeks.','People see the same ad too often and stop clicking.','<b>Fix:</b> plan fresh creatives every 2 weeks: new hooks, new faces, new angles. Rachna plans them, you film on your phone.'],
  scale:[46,'Scaling loses money.','Doubling budget overnight resets what Meta has learned.','<b>Fix:</b> raise budgets about 20% at a time on ads already beating break-even, and add new creatives as you grow.'],
  traffic:[54,'Lots of visitors, few orders.','The ad works; the store isn&#39;t closing the sale.','<b>Fix:</b> check the product page on a phone: price, reviews, delivery date and a clear Buy button above the fold.'],
@@ -754,9 +754,9 @@ function results(){
  $('kBudget').textContent=inr(bud);
  $('kBudgetS').textContent=m.d>0&&m.s/m.be>=1.1?'About 2 orders a day, enough for Meta to learn who buys.':'Start small, and only after the fixes below.';
  $('kSales').textContent=inrK(bud*m.s*0.75)+' – '+inrK(bud*m.s*1.25);
- $('kSalesS').textContent='Around '+mult(m.s)+' in sales for every ₹1. Month one is usually lower while Meta learns.';
- $('kBe').textContent=m.d>0?mult(m.be)+' per ₹1':'Not possible yet';
- $('kBeS').textContent=m.d>0?'in sales for every ₹1 on ads, after RTO, product, shipping and our fee.':'Each order loses money before ads. Fix pricing first.';
+ $('kSalesS').textContent='Around '+mult(m.s)+' ROAS. Month one is usually lower while Meta learns.';
+ $('kBe').textContent=m.d>0?mult(m.be)+' ROAS':'Not possible yet';
+ $('kBeS').textContent=m.d>0?'after RTO, product and shipping costs.':'Each order loses money before ads. Fix pricing first.';
  /* projection */
  var grow=m.d>0&&m.s/m.be>=1.2,ramp=[0.7,0.9,1,1.05,1.1,1.12],W=Math.max(300,Math.round($('pj').clientWidth||520)),H=Math.round(W<440?240:230),pl=44,pb=28,pt=10,rows=[],mx=0;
  for(var i=0;i<6;i++){var sp=bud*Math.pow(grow?1.15:1,i),sl=sp*m.s*ramp[i];rows.push([sp,sl*0.75,sl*1.25]);mx=Math.max(mx,sl*1.25,sp);}
@@ -774,7 +774,7 @@ function results(){
  whatif();
  /* Vishwas */
  var top=problems(o,m)[0];
- var v='Here&#39;s the honest picture for '+esc(brand)+'. Every ₹100 you put into Meta ads should bring about '+inr(m.sales)+' in sales. After RTO, product, shipping and our fee, you&#39;d '+(m.left>=0?'keep about '+inr(m.left)+'.':'lose about '+inr(-m.left)+'.')+' '+(sc>=80?'You&#39;re ready to run ads.':'The first thing I&#39;d fix: '+top[1].charAt(0).toLowerCase()+top[1].slice(1));
+ var v='Here&#39;s the honest picture for '+esc(brand)+'. Every ₹100 you put into Meta ads should bring about '+inr(m.sales)+' in sales. After RTO, product and shipping, you&#39;d '+(m.left>=0?'keep about '+inr(m.left)+'.':'lose about '+inr(-m.left)+'.')+' '+(sc>=80?'You&#39;re ready to run ads.':'The first thing I&#39;d fix: '+top[1].charAt(0).toLowerCase()+top[1].slice(1));
  if(v!==lastV){lastV=v;type(v);}
  /* WhatsApp */
  var c=CATS.filter(function(x){return x[0]===o.cat;})[0][1];
@@ -782,7 +782,7 @@ function results(){
  '• Brand: '+($('fBrand').value.trim()||'-')+'\n• Instagram: '+($('fInsta').value.trim()||'-')+'\n• Website: '+($('fWeb').value.trim()||'-')+'\n• Category: '+c+'\n'+
  '• Order value: '+inr(o.aov)+' | Product cost: '+Math.round(o.cost*100)+'% | Shipping: '+inr(o.ship)+' | RTO: '+Math.round(o.rto*100)+'%\n'+
  '• Monthly ad spend: '+(o.spend?inr(o.spend):'none yet')+'\n'+
- '• Readiness score: '+sc+'/100\n• Break-even: '+(m.d>0?mult(m.be)+' per ₹1':'not possible yet')+'\n• Top problem: '+top[1].replace(/&#39;/g,"'");
+ '• Readiness score: '+sc+'/100\n• Break-even: '+(m.d>0?mult(m.be)+' ROAS':'not possible yet')+'\n• Top problem: '+top[1].replace(/&#39;/g,"'");
  $('anWa').href='https://wa.me/'+WA+'?text='+encodeURIComponent(msg);
 }
 function esc(t){return t.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
