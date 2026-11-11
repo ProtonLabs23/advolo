@@ -24,7 +24,7 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IST = dt.timezone(dt.timedelta(hours=5, minutes=30))
-RANGES = {"7d": "Last 7 days", "30d": "Last 30 days", "mtd": "This month", "lm": "Last month"}
+RANGES = {"7d": "Last 7 days", "30d": "Last 30 days", "mtd": "This month"}
 API = "https://connectors.windsor.ai/facebook"
 
 
@@ -214,8 +214,10 @@ def main() -> int:
         return 1
     now = dt.datetime.now(IST)
     today = now.date()
-    lm_start = (today.replace(day=1) - dt.timedelta(days=1)).replace(day=1)
-    since = min(today - dt.timedelta(days=60), lm_start - dt.timedelta(days=31))
+    # Windsor's trial serves the last 30 days only; a paid plan can widen this via WINDSOR_DAYS.
+    days = int(os.environ.get("WINDSOR_DAYS", "30") or 30)
+    since = today - dt.timedelta(days=days - 1)
+    lm_start = since
     acct_rows = windsor(["date", "account_id", "spend", "action_values_omni_purchase", "actions_omni_purchase"],
                         since, today, key)
     ad_rows = windsor(["date", "account_id", "ad_id", "ad_name", "campaign", "spend",

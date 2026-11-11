@@ -129,7 +129,7 @@ td.n,th.n{text-align:right;white-space:nowrap}
 <div class="top">
 <div><h1 id="hello">Your dashboard</h1><p class="live" id="live"><span class="dot"></span><span id="liveTxt">Loading…</span></p></div>
 <div class="tabs" role="group" aria-label="Date range">
-<button type="button" data-r="7d">7 days</button><button type="button" data-r="mtd">This month</button><button type="button" data-r="30d">30 days</button><button type="button" data-r="lm">Last month</button>
+<button type="button" data-r="7d">7 days</button><button type="button" data-r="mtd">This month</button><button type="button" data-r="30d">30 days</button>
 </div>
 </div>
 
@@ -180,7 +180,7 @@ function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){retur
 function chg(v,invert,el){if(v==null){el.textContent='';return}var good=invert?v<0:v>0;el.innerHTML='<span class="'+(good?'up':'down')+'">'+(v>0?'↑ ':'↓ ')+Math.abs(v)+'%</span> vs previous';}
 function ago(iso){if(!iso)return 'not synced yet';var m=Math.round((Date.now()-new Date(iso))/60000);if(m<2)return 'just now';if(m<60)return m+' min ago';var h=Math.floor(m/60);return h<24?h+' h ago':Math.floor(h/24)+' days ago'}
 function greet(){var h=+new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata',hour:'numeric',hour12:false});return h<12?'Good morning':h<17?'Good afternoon':'Good evening'}
-var range='30d';try{range=localStorage.getItem('advolo_range')||'30d'}catch(e){}
+var range='30d';try{range=localStorage.getItem('advolo_range')||'30d'}catch(e){}if(['7d','30d','mtd'].indexOf(range)<0)range='30d';
 var DATA=null,ENC={{ENC}};
 document.querySelectorAll('.tabs button').forEach(function(b){b.addEventListener('click',function(){range=b.dataset.r;try{localStorage.setItem('advolo_range',range)}catch(e){}load()})});
 
