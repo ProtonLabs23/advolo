@@ -2,7 +2,7 @@ name: Refresh brand dashboards
 
 on:
   schedule:
-    - cron: "17 */3 * * *"   # every 3 hours (UTC)
+    - cron: "7 * * * *"      # every hour
   workflow_dispatch: {}       # "Run workflow" button for an instant refresh
 
 permissions:
