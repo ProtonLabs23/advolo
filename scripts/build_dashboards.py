@@ -1,9 +1,11 @@
 """Rebuild the passcode-protected brand dashboards in d/ with fresh Meta numbers from Windsor.ai.
 
-Runs on GitHub Actions every 3 hours (.github/workflows/dashboards.yml). Needs two repository secrets:
+Runs on GitHub Actions every hour (.github/workflows/dashboards.yml). Needs two repository secrets:
   WINDSOR_API_KEY  - from Windsor.ai (Account / API key)
   DASH_BRANDS      - JSON: {"<slug>": {"name": "Cayani", "account": "714940761035479",
-                                       "file": "d/cayani-003cf736.html", "code": "G8SH-56YB"}, ...}
+                                       "file": "d/cayani-003cf736.html", "code": "G8SH-56YB",
+                                       "shopify": "<store name as Windsor lists it, optional>"}, ...}
+With "shopify" set, the headline "Sales" is the whole store (all orders, net of refunds and cancellations).
 Data is encrypted with each brand's passcode (AES-GCM, key from PBKDF2-SHA256), so the public repo
 only ever holds ciphertext. Nothing about the data is printed to the logs.
 """
@@ -26,12 +28,40 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IST = dt.timezone(dt.timedelta(hours=5, minutes=30))
 RANGES = {"7d": "Last 7 days", "30d": "Last 30 days", "mtd": "This month"}
 API = "https://connectors.windsor.ai/facebook"
+SHOP_FIELDS = os.environ.get("WINDSOR_SHOPIFY_FIELDS") or ("date,account_name,order_id,order_created_at,order_total_price,"
+                                                          "order_refunds_subtotal,order_cancelled_at,order_test")
 
 
-def windsor(fields: list[str], date_from: dt.date, date_to: dt.date, key: str) -> list[dict]:
+def shop_daily(rows: list[dict], store: str) -> dict:
+    """All store orders per IST day, net of refunds; cancelled/test orders count as zero."""
+    out, seen = {}, set()
+    for r in rows:
+        names = {str(r.get(k)) for k in ("account_name", "account_id", "shop") if r.get(k) is not None}
+        if names and store not in names:
+            continue
+        oid = r.get("order_id")
+        if oid is not None:
+            if oid in seen:
+                continue
+            seen.add(oid)
+        raw = r.get("order_created_at") or r.get("date")
+        try:
+            t = dt.datetime.fromisoformat(str(raw).replace("Z", "+00:00"))
+            d = (t if t.tzinfo else t.replace(tzinfo=IST)).astimezone(IST).date()
+        except (TypeError, ValueError):
+            continue
+        cancelled = r.get("order_cancelled_at") or str(r.get("order_test")).lower() in ("true", "1")
+        net = 0 if cancelled else max(0, paise(r.get("order_total_price")) - paise(r.get("order_refunds_subtotal")))
+        x = out.setdefault(d, {"sales": 0, "orders": 0})
+        x["sales"] += net
+        x["orders"] += 1 if net else 0
+    return out
+
+
+def windsor(fields: list[str], date_from: dt.date, date_to: dt.date, key: str, connector: str = "facebook") -> list[dict]:
     q = urllib.parse.urlencode({"api_key": key, "fields": ",".join(fields),
                                 "date_from": date_from.isoformat(), "date_to": date_to.isoformat()})
-    with urllib.request.urlopen(f"{API}?{q}", timeout=300) as r:
+    with urllib.request.urlopen(f"https://connectors.windsor.ai/{connector}?{q}", timeout=300) as r:
         body = json.loads(r.read().decode())
     if isinstance(body, dict) and "data" in body:
         return body["data"]
@@ -222,6 +252,12 @@ def main() -> int:
                         since, today, key)
     ad_rows = windsor(["date", "account_id", "ad_id", "ad_name", "campaign", "spend",
                        "action_values_omni_purchase", "actions_omni_purchase"], lm_start, today, key)
+    shop_rows = None
+    if any(b.get("shopify") for b in brands.values()):
+        try:
+            shop_rows = windsor(SHOP_FIELDS.split(","), since, today, key, "shopify")
+        except Exception as e:  # noqa: BLE001  (dashboards still update with Meta numbers)
+            print(f"Shopify pull failed: {type(e).__name__}")
     tpl = open(os.path.join(ROOT, "scripts", "dash_template.html"), encoding="utf-8").read()
     built = 0
     for slug, b in brands.items():
@@ -242,7 +278,18 @@ def main() -> int:
         if not daily:
             print(f"{slug}: no data returned, page left unchanged")
             continue
+        shop = shop_daily(shop_rows, str(b["shopify"])) if (b.get("shopify") and shop_rows is not None) else None
+        if shop:
+            for d in daily:
+                daily[d]["sales"], daily[d]["orders"] = 0, 0
+            for d, x in shop.items():
+                if since <= d <= today:
+                    y = daily.setdefault(d, {"spend": 0, "sales": 0, "orders": 0})
+                    y["sales"], y["orders"] = x["sales"], x["orders"]
         data = {k: summary(b["name"], daily, ads, k, today, now) for k in RANGES}
+        for v in data.values():
+            v["sales_source"] = "shopify" if shop else "meta"
+            v["sales_note"] = "All store orders, after refunds & cancellations" if shop else "Meta-reported"
         notes, ideas = updates(daily, ads, today, now), rachna(ads, today)
         for v in data.values():
             v["changes"], v["rachna"] = notes, ideas

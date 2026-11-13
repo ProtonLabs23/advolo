@@ -134,7 +134,7 @@ td.n,th.n{text-align:right;white-space:nowrap}
 </div>
 
 <section class="kpis" aria-label="Key numbers">
-<div class="k hero"><small>Sales from ads</small><b id="kSales" class="skel">₹0,00,000</b><span class="sub" id="kSalesS">Meta-reported</span></div>
+<div class="k hero"><small>Sales</small><b id="kSales" class="skel">₹0,00,000</b><span class="sub" id="kSalesS"></span><span class="sub" id="kSalesN" style="display:block;opacity:.75">Meta-reported</span></div>
 <div class="k"><small>ROAS</small><b id="kRoas" class="skel">0.0x</b><span class="sub" id="kRoasS">sales for every ₹1</span></div>
 <div class="k"><small>Ad spend</small><b id="kSpend" class="skel">₹0,00,000</b><div class="bar" id="kBudgetBar" hidden><i></i></div><span class="sub" id="kSpendS"></span></div>
 <div class="k"><small>Orders</small><b id="kOrders" class="skel">000</b><span class="sub" id="kOrdersS"></span></div>
@@ -144,7 +144,7 @@ td.n,th.n{text-align:right;white-space:nowrap}
 
 <div class="grid2">
 <section class="card"><div class="ch"><h2>Sales vs ad spend</h2><span id="chartLbl">Daily</span></div>
-<div class="legend"><span><i></i>Sales from ads</span><span><i class="s"></i>Ad spend</span></div>
+<div class="legend"><span><i></i>Sales</span><span><i class="s"></i>Ad spend</span></div>
 <div class="chart" id="chart"><svg id="svg" role="img" aria-label="Daily sales and ad spend chart"></svg><div class="tip" id="tip"></div></div>
 <div class="minis">
 <div class="mini"><small>Avg sales a day</small><b id="mAvg">–</b></div>
@@ -153,7 +153,7 @@ td.n,th.n{text-align:right;white-space:nowrap}
 <div class="mini"><small>Days with no sales</small><b id="mZero">–</b></div>
 </div>
 </section>
-<section class="card" id="changes"><div class="ch"><h2>Latest updates</h2><span>From your numbers</span></div><ul class="log" id="log"></ul></section>
+<section class="card" id="changes"><div class="ch"><h2>Latest updates</h2><span>Our changes &amp; your numbers</span></div><ul class="log" id="log"></ul></section>
 </div>
 
 <section class="card rc" id="ideas" aria-labelledby="rcH">
@@ -164,7 +164,7 @@ td.n,th.n{text-align:right;white-space:nowrap}
 
 <div class="grid3">
 <section class="card best" id="ads"><div class="ch"><h2>Best-selling ads</h2><span id="adsLbl"></span></div>
-<div style="overflow-x:auto"><table><thead><tr><th>Ad</th><th class="n">Sales</th><th class="n hide-s">ROAS</th><th class="n hide-s">Orders</th><th class="n">Status</th></tr></thead><tbody id="adsBody"></tbody></table></div></section>
+<div style="overflow-x:auto"><table><thead><tr><th>Ad</th><th class="n">Sales (Meta)</th><th class="n hide-s">ROAS</th><th class="n hide-s">Orders</th><th class="n">Status</th></tr></thead><tbody id="adsBody"></tbody></table></div></section>
 <section class="card help"><div class="ch"><h2>Questions?</h2><span>24/7</span></div>
 <p>Ask why sales moved or what we&#39;re testing next. A real person replies.</p>
 <div class="btns"><a class="btn" href="https://wa.me/918595956554?text=Hi%20Advolo%2C%20I%20have%20a%20question%20about%20my%20dashboard." target="_blank" rel="noopener">Ask on WhatsApp</a><a class="btn ghost" href="mailto:support@ads4u.net">Email support</a></div></section>
@@ -194,10 +194,10 @@ function draw(d){
  document.querySelectorAll('.skel').forEach(function(e){e.classList.remove('skel')});
  $('hello').textContent=greet()+', '+d.client.name;
  var live=$('live');live.classList.toggle('err',!!d.sync.error);
- $('liveTxt').textContent=d.sync.error?'Last update failed. We’ve been alerted.':(d.sync.last?'Live from Meta Ads · updated '+ago(d.sync.last):'Connecting your ad account… first numbers within a few hours');
+ $('liveTxt').textContent=d.sync.error?'Last update failed. We’ve been alerted.':(d.sync.last?(d.sales_source==='shopify'?'Live from Meta Ads & Shopify · updated ':'Live from Meta Ads · updated ')+ago(d.sync.last):'Connecting your ad account… first numbers within a few hours');
  if(d.client.status==='demo'){$('banner').style.display='none'}
  var k=d.kpis,c=k.change;
- $('kSales').textContent=inr(k.sales);chg(c.sales,false,$('kSalesS'));
+ $('kSales').textContent=inr(k.sales);chg(c.sales,false,$('kSalesS'));$('kSalesN').textContent=d.sales_note||'Meta-reported';
  $('kRoas').textContent=k.roas==null?'–':k.roas.toFixed(2)+'x';
  $('kRoasS').innerHTML=c.roas==null?'sales for every ₹1':'<span class="'+(c.roas>0?'up':'down')+'">'+(c.roas>0?'↑ ':'↓ ')+Math.abs(c.roas)+'%</span> vs previous';
  $('kSpend').textContent=inr(k.spend);
